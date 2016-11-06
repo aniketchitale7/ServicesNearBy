@@ -1,18 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Blog</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>ServicesNearBy</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <%= stylesheet_link_tag "main" %>
+  <%= javascript_include_tag('jquery.min.js') %>
+  <%= javascript_include_tag('skel.min.js') %>
+  <%= javascript_include_tag('util.js') %>
+  <%= javascript_include_tag('main.js') %>
+  <!--<script src="/assets/javascripts/jquery.min.js"></script>-->
+  <!--<script src="/assets/javascripts/skel.min.js"></script>-->
+  <!--<script src="/assets/javascripts/util.js"></script>-->
+  <!--&lt;!&ndash;[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]&ndash;&gt;-->
+  <!--<script src="/assets/javascripts/main.js"></script>-->
 
-  </head>
 
-  <body>
-  <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-    <%= yield %>
-  </body>
+</head>
+
+
+<body>
+
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+
+        <div class="inner">
+
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span class="symbol"><%= image_tag("logo.svg", :alt => "logo") %></span><span class="title">ServicesNearBy</span>
+          </a>
+
+          <!-- Nav -->
+          <nav>
+
+            <ul>
+              <a href="#" class="button fit">Login / Sign Up</a>
+              <li><a href="#menu">Menu</a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </header>
+
+      <!-- Menu -->
+
+      <nav id="menu">
+
+        <h2>Menu</h2>
+        <ul>
+          <li><a>Home</a></li>
+          <li><a>About Us</a></li>
+          <li><a>Contact Us</a></li>
+          <li><a>My Profile</a></li>
+        </ul>
+      </nav>
+
+
+
+      <%= yield %>
+
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">SELT</a></li>
+          </ul>
+        </div>
+      </footer>
+
+    </div>
+
+
+
+
+
+</body>
 </html>
