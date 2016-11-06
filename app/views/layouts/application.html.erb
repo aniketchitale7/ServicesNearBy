@@ -20,6 +20,20 @@
 
 
 <body>
+<div class="container">
+  <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
+  <% end %>
+</div>
+
+<%= yield :top_content %>
+
+<div class="container">
+  <h1><%= yield :header %></h1>
+  <%= yield %>
+</div>
 
     <div id="wrapper">
       <!-- Header -->
@@ -36,7 +50,9 @@
           <nav>
 
             <ul>
-              <a href="#" class="button fit">Login / Sign Up</a>
+              <%= link_to 'Login / Sign Up', new_user_registration_path, class: 'button fit' %>
+
+
               <li><a href="#menu">Menu</a></li>
             </ul>
           </nav>
