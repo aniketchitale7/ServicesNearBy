@@ -28,11 +28,8 @@
   <% end %>
 </div>
 
-<%= yield :top_content %>
 
 <div class="container">
-  <h1><%= yield :header %></h1>
-  <%= yield %>
 </div>
 
     <div id="wrapper">
@@ -50,7 +47,16 @@
           <nav>
 
             <ul>
-              <%= link_to 'Login / Sign Up', new_user_registration_path, class: 'button fit' %>
+              <% if user_signed_in? %>
+                  <li>
+                    <%= link_to('Logout', destroy_user_session_path, class: 'button fit' ) %>
+                  </li>
+              <% else %>
+                  <li>
+                    <%= link_to 'Login / Sign Up', new_user_registration_path, :method => :delete , class: 'button fit' %>
+                  </li>
+              <% end %>
+
 
 
               <li><a href="#menu">Menu</a></li>
@@ -66,7 +72,7 @@
 
         <h2>Menu</h2>
         <ul>
-          <li><a>Home</a></li>
+          <li> <%= link_to('Home', welcome_index_path) %></li>
           <li><a>About Us</a></li>
           <li><a>Contact Us</a></li>
           <li><a>My Profile</a></li>
