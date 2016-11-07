@@ -65,6 +65,8 @@ group :test do
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'email_spec'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :production do
