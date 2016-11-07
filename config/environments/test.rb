@@ -37,6 +37,21 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host:'test.host' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => 'localhost:3000',
+      :user_name => "servicesnearby@gmail.com",
+      :password => "oakcrest1100",
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
