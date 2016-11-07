@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/aniketchitale7/Documents/workspace/selt/ServicesNearBy/app/controllers/application_controller.rb": [
+      "/Users/macbook_user/ServicesNearBy/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -11,14 +11,14 @@
         null,
         null
       ],
-      "/Users/aniketchitale7/Documents/workspace/selt/ServicesNearBy/spec/controllers/devise/passwords_controller_spec.rb": [
+      "/Users/macbook_user/ServicesNearBy/spec/controllers/devise/passwords_controller_spec.rb": [
         1,
         null,
         1,
         null,
         null
       ],
-      "/Users/aniketchitale7/Documents/workspace/selt/ServicesNearBy/spec/controllers/devise/sessions_controller_spec.rb": [
+      "/Users/macbook_user/ServicesNearBy/spec/controllers/devise/sessions_controller_spec.rb": [
         1,
         1,
         null,
@@ -50,7 +50,7 @@
         null,
         null
       ],
-      "/Users/aniketchitale7/Documents/workspace/selt/ServicesNearBy/spec/models/user_spec.rb": [
+      "/Users/macbook_user/ServicesNearBy/spec/models/user_spec.rb": [
         1,
         1,
         1,
@@ -87,6 +87,6 @@
         null
       ]
     },
-    "timestamp": 1478477927
+    "timestamp": 1478478543
   }
 }
