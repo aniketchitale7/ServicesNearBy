@@ -34,7 +34,8 @@ class MyprofileController < ApplicationController
     # @user_service.user_password = "dummy"
     # @user_service.created_at = "25-Nov-1992"
     # @user_service.updated_at = "25-Nov-1992"
-    @user_new = Service_User.create(my_hash)
+    @user_new = Service_User.create_service_user(my_hash)
+    # @user_new = Service_User.create(my_hash)
   end
 
 

@@ -6,10 +6,15 @@ class ApplicationController < ActionController::Base
     @service_user = Service_User.find_by_user_email(user.email)
     if @service_user == nil
       puts "NILL"
-      welcome_index_path
+      myprofile_myprofile_path
     else
       puts @service_user.service_roles_id
-      welcome_admin_path
+      if @service_user.service_roles_id ==0
+        welcome_admin_path
+      else
+        welcome_index_path
+      end
+
     end
   end
 end
