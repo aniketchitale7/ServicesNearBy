@@ -30,7 +30,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
+<<<<<<< HEAD
+
+=======
 gem 'faker', '~> 1.5'
+>>>>>>> master
 gem 'devise'
 
 gem 'rails-controller-testing'
