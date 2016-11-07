@@ -81,7 +81,10 @@
           <div class="col-xs-6 col-md-6">
             <input type="text" name="user_lastname" value="" class="form-control input-lg" placeholder="Last Name"  />                        </div>
         </div>
-
+        <label>E-mail ID:</label>
+        <div class="col-xs-6 col-md-6">
+          <%= session[:user_emailid] %>
+        </div>
         <label>Select User Type</label>
         <div class="col-xs-4 col-md-4">
           <select name="service_roles_id" class = "form-control input-lg">

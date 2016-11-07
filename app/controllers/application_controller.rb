@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     @service_user = Service_User.find_by_user_email(user.email)
     if @service_user == nil
       puts "NILL"
+      session[:user_emailid] = user.email
       myprofile_myprofile_path
     else
       puts @service_user.service_roles_id
