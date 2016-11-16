@@ -67,17 +67,22 @@
       </header>
 
       <!-- Menu -->
+      <% if session[:logged_user] != nil and session[:roleid] != 0 %>
 
-      <nav id="menu">
+        <nav id="menu">
 
-        <h2>Menu</h2>
-        <ul>
-          <li> <%= link_to('Home', welcome_index_path) %></li>
-          <li><a>About Us</a></li>
-          <li><a>Contact Us</a></li>
-          <li><%= link_to "My Profile", myprofile_myprofile_path %></li>
-        </ul>
-      </nav>
+          <h2>Menu</h2>
+          <ul>
+            <li> <%= link_to('Home', welcome_index_path) %></li>
+            <li><a>About Us</a></li>
+            <li><a>Contact Us</a></li>
+            <li><%= link_to "My Profile", myprofile_myprofile_path %></li>
+            <% if session[:logged_user] != nil and session[:roleid] == 2 %>
+                <li><%= link_to "My Services", myprofile_myprofile_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      <% end %>
 
 
 
