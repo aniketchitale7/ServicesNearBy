@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       session[:roleid] = @service_user.service_roles_id
       puts @service_user.service_roles_id
       if @service_user.service_roles_id ==0
-        admin_index_path
+        welcome_admin_path
       else
         welcome_index_path
       end
@@ -22,4 +22,3 @@ class ApplicationController < ActionController::Base
     end
   end
 end
-

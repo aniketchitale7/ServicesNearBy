@@ -14,11 +14,7 @@
   <!--<script src="/assets/javascripts/util.js"></script>-->
   <!--&lt;!&ndash;[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]&ndash;&gt;-->
   <!--<script src="/assets/javascripts/main.js"></script>-->
-
-
 </head>
-
-
 <body>
 <div class="container">
   <% flash.each do |key, value| %>
@@ -27,82 +23,57 @@
       </div>
   <% end %>
 </div>
-
-
 <div class="container">
 </div>
-
-    <div id="wrapper">
-      <!-- Header -->
-      <header id="header">
-
-        <div class="inner">
-
-          <!-- Logo -->
-          <a href="index.html" class="logo">
-            <span class="symbol"><%= image_tag("logo.svg", :alt => "logo") %></span><span class="title">ServicesNearBy</span>
-          </a>
-
-          <!-- Nav -->
-          <nav>
-
-            <ul>
-              <% if user_signed_in? %>
-                  <li>
-                    <%= link_to('Logout', destroy_user_session_path, class: 'button fit' ) %>
-                  </li>
-              <% else %>
-                  <li>
-                    <%= link_to 'Login / Sign Up', new_user_registration_path, :method => :delete , class: 'button fit' %>
-                  </li>
-              <% end %>
-
-
-
-              <li><a href="#menu">Menu</a></li>
-            </ul>
-          </nav>
-
-        </div>
-      </header>
-
-      <!-- Menu -->
-      <% if session[:logged_user] != nil and session[:roleid] != 0 %>
-
-        <nav id="menu">
-
-          <h2>Menu</h2>
-          <ul>
-            <li> <%= link_to('Home', welcome_index_path) %></li>
-            <li><a>About Us</a></li>
-            <li><a>Contact Us</a></li>
-            <li><%= link_to "My Profile", myprofile_myprofile_path %></li>
-            <% if session[:logged_user] != nil and session[:roleid] == 2 %>
-                <li><%= link_to "My Services", myprofile_myprofile_path %></li>
-            <% end %>
-          </ul>
-        </nav>
-      <% end %>
-
-
-
-      <%= yield %>
-
-
-      <!-- Footer -->
-      <footer id="footer">
-        <div class="inner">
-          <ul class="copyright">
-            <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">SELT</a></li>
-          </ul>
-        </div>
-      </footer>
-
+<div id="wrapper">
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <span class="symbol"><%= image_tag("logo.svg", :alt => "logo") %></span><span class="title">ServicesNearBy</span>
+      </a>
+      <!-- Nav -->
+      <nav>
+        <ul>
+          <% if user_signed_in? %>
+              <li>
+                <%= link_to('Logout', destroy_user_session_path, class: 'button fit' ) %>
+              </li>
+          <% else %>
+              <li>
+                <%= link_to 'Login / Sign Up', new_user_registration_path, :method => :delete , class: 'button fit' %>
+              </li>
+          <% end %>
+          <li><a href="#menu">Menu</a></li>
+        </ul>
+      </nav>
     </div>
-
-
-
-
-
+  </header>
+  <!-- Menu -->
+  <% if session[:logged_user] != nil and session[:roleid] != 0 %>
+      <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+          <li> <%= link_to('Home', welcome_index_path) %></li>
+          <li><a>About Us</a></li>
+          <li><a>Contact Us</a></li>
+          <li><%= link_to "My Profile", myprofile_myprofile_path %></li>
+          <% if session[:logged_user] != nil and session[:roleid] == 2 %>
+              <li><%= link_to "My Services", service_services_index_path  %></li>
+          <% end %>
+        </ul>
+      </nav>
+  <% end %>
+  <%= yield %>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">SELT</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
 </body>
 </html>

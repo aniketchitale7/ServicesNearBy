@@ -1,0 +1,31 @@
+<!-- Main -->
+<div id="main">
+  <div class="inner">
+    <header>
+      <h1>This is ServicesNearBy, a place where you<br />
+        can find services near you.</a>.</h1>
+    </header>
+    <table>
+      <tr>
+        <th>service_categories_id</th>
+        <th>service_users_id</th>
+        <th>service_price</th>
+        <th>service_status</th>
+        <th>service_description</th>
+      </tr>
+
+      <% @service_services.each do |service| %>
+          <tr>
+            <td><%= service.service_categories_id %></td>
+            <td><%= service.service_users_id %></td>
+            <td><%= service.service_price %></td>
+            <td><%= service.service_status%></td>
+            <td><%= service.service_description %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+
+
