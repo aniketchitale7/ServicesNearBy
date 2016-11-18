@@ -7,5 +7,13 @@ Rails.application.routes.draw do
   post 'myprofile/create'
   get 'admin/index'
 
+  resources :admin
+
+  get '/admin/reject/:id', :to => 'admin#reject', :as => 'adminreject'
+  get '/admin/activate/:id', :to => 'admin#activate', :as => 'adminactivate'
+  get '/admin/deactivate/:id', :to => 'admin#deactivate', :as => 'admindeactivate'
+  get '/admin/deactivatecategory/:id', :to => 'admin#deactivatecategory', :as => 'admindeactivatecategory'
+  get '/admin/activatecategory/:id', :to => 'admin#activatecategory', :as => 'adminactivatecategory'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

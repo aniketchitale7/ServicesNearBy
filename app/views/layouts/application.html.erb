@@ -59,7 +59,10 @@
 
 
 
-              <li><a href="#menu">Menu</a></li>
+              <% if session[:logged_user] != nil and session[:roleid] != 0 %>
+
+                <li><a href="#menu">Menu</a></li>
+              <% end %>
             </ul>
           </nav>
 

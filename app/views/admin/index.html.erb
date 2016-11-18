@@ -288,15 +288,13 @@
     }
 
   </style>
+
+
 </head>
 <body>
 
 <div id="main">
-  <div class="inner">
-    <header>
-      <h1>This is ServicesNearBy, a place where you<br />
-        can find services near you.</a>.</h1>
-    </header>
+  <div>
     <div class="container" style="width: 100%">
 
       <div class="row">
@@ -308,13 +306,13 @@
                 <li><a href="#tabvendors" data-toggle="tab">Vendors</a></li>
                 <li><a href="#tabadmins" data-toggle="tab">Admins</a></li>
                 <li><a href="#tabvendorrequest" data-toggle="tab">Vendor Requests</a></li>
-                <li><a href="#tab3default" data-toggle="tab">Service Request</a></li>
-                <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
+                <li><a href="#tabservices" data-toggle="tab">Services</a></li>
+                <li><a href="#tabcategories" data-toggle="tab">Categories</a></li>
                 <li class="dropdown">
                   <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
-                    <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                    <li><a href="#tab4default" data-toggle="tab">Default 5</a></li>
                   </ul>
                 </li>
               </ul>
@@ -331,7 +329,7 @@
                       <td></td>
                     </tr>
                   <% @users.each do |user| %>
-                      <% if user.service_roles_id == 1 %>
+                      <% if user.service_roles_id == 1 and user.user_status != "Pending" %>
                         <tr>
                           <td>
                             <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -346,7 +344,7 @@
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                     <h3 class="modal-title" id="lineModalLabel">Details</h3>
                                   </div>
                                   <div class="modal-body">
@@ -376,7 +374,7 @@
                                   <div class="modal-footer">
                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                       <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
                                       </div>
                                     </div>
                                   </div>
@@ -385,7 +383,11 @@
                             </div>
                           </td>
                           <td>
-                            <%= link_to "Delete"%>
+                            <% if user.user_status == "Active" %>
+                                <%= link_to "De-activate", admindeactivate_path(user) %>
+                            <% else %>
+                                <%= link_to "Activate", adminactivate_path(user)%>
+                            <% end %>
                           </td>
                         </tr>
                       <% end %>
@@ -402,7 +404,7 @@
                       <td></td>
                     </tr>
                     <% @users.each do |user| %>
-                        <% if user.service_roles_id == 2 %>
+                        <% if user.service_roles_id == 2 and user.user_status != "Pending" %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -417,7 +419,7 @@
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h3 class="modal-title" id="lineModalLabel">Details</h3>
                                       </div>
                                       <div class="modal-body">
@@ -447,7 +449,7 @@
                                       <div class="modal-footer">
                                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                           <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
                                           </div>
                                         </div>
                                       </div>
@@ -456,7 +458,11 @@
                                 </div>
                               </td>
                               <td>
-                                <%= link_to "Delete"%>
+                                <% if user.user_status == "Active" %>
+                                    <%= link_to "De-activate", admindeactivate_path(user) %>
+                                <% else %>
+                                    <%= link_to "Activate", adminactivate_path(user)%>
+                                <% end %>
                               </td>
                             </tr>
                         <% end %>
@@ -473,7 +479,7 @@
                       <td></td>
                     </tr>
                     <% @users.each do |user| %>
-                        <% if user.service_roles_id == 0 %>
+                        <% if user.service_roles_id == 0 and user.user_status != "Pending" %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -488,7 +494,7 @@
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h3 class="modal-title" id="lineModalLabel">Details</h3>
                                       </div>
                                       <div class="modal-body">
@@ -518,7 +524,7 @@
                                       <div class="modal-footer">
                                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                           <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
                                           </div>
                                         </div>
                                       </div>
@@ -527,7 +533,11 @@
                                 </div></td>
 
                               <td>
-                                <%= link_to "Delete"%>
+                                <% if user.user_status == "Active" %>
+                                    <%= link_to "De-activate", admindeactivate_path(user) %>
+                                <% else %>
+                                    <%= link_to "Activate", adminactivate_path(user)%>
+                                <% end %>
                               </td>
                             </tr>
                         <% end %>
@@ -544,7 +554,7 @@
                       <td></td>
                     </tr>
                     <% @users.each do |user| %>
-                        <% if user.service_roles_id == 2 and user.user_status == "pending" %>
+                        <% if user.service_roles_id == 1 and user.user_status == "Pending" %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -559,7 +569,7 @@
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h3 class="modal-title" id="lineModalLabel">Details</h3>
                                       </div>
                                       <div class="modal-body">
@@ -589,7 +599,7 @@
                                       <div class="modal-footer">
                                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                           <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
                                           </div>
                                         </div>
                                       </div>
@@ -598,17 +608,215 @@
                                 </div>
                               </td>
                               <td>
-                                <%= link_to "Accept"%>
+                                <%= link_to "Accept" , admin_path(user)%>
                               </td>
                               <td>
-                                <%= link_to "Reject"%>
+                                <%= link_to "Reject", adminreject_path(user)%>
                               </td>
                             </tr>
                         <% end %>
                     <% end %>
                   </table>
                 </div>
-                <div class="tab-pane fade" id="tab4default">Default 4</div>
+                <div class="tab-pane fade" id="tabcategories">
+                  <table>
+                    <tr>
+                      <td><b>Category</b></td>
+                      <td><b>Details</b></td>
+                      <td></td>
+                    </tr>
+                    <% @category.each do |category| %>
+                        <tr>
+                              <td>
+                                <%= category.service_name  %>
+                              </td>
+                              <td>
+                                <%= category.service_information %>
+                              </td>
+
+                              <td>
+                                <% if category.service_status =="Active" %>
+                                  <%= link_to "De-activate" , admindeactivatecategory_path(category)%>
+                                <%else%>
+                                    <%= link_to "Activate", adminactivatecategory_path(category)%>
+                                <% end %>
+                              </td>
+                            </tr>
+                    <% end %>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="tabservices">
+                  <div class="container" style="width: 100%">
+
+                    <div class="row">
+                      <div class="col-md-6" style="width: 100%">
+                        <div class="panel with-nav-tabs panel-default">
+                          <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#tabavailableServices" data-toggle="tab">Available Services</a></li>
+                              <li><a href="#tabservicerequests" data-toggle="tab">Service Requests</a></li>
+                            </ul>
+                          </div>
+                          <div class="panel-body">
+                            <div class="tab-content">
+                              <div class="tab-pane fade in active" id="tabavailableServices">
+                                <table>
+                                  <tr>
+                                    <td><b>Name</b></td>
+                                    <td><b>Info</b></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                  <% @users.each do |user| %>
+                                      <% if user.service_roles_id == 1 and user.user_status != "Pending" %>
+                                          <tr>
+                                            <td>
+                                              <%= user.user_firstname  %> <%= user.user_lastname  %>
+                                            </td>
+                                            <td>
+                                              <%= user.user_email %>
+                                            </td>
+                                            <td>
+                                              <button data-toggle="modal" data-target="#squarespaceModal-<%= user.id %>" style="height: auto; width: auto">Details</button>
+                                              <!-- line modal -->
+                                              <div class="modal fade" id="squarespaceModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                      <h3 class="modal-title" id="lineModalLabel">Details</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                      <div class="form-group">
+                                                        <label>Name</label>
+                                                        <%= user.user_firstname  %> <%= user.user_lastname  %>
+
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Email</label>
+                                                        <%= user.user_email %>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Status</label>
+                                                        <%= user.user_status %>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Information</label>
+                                                        <%= user.user_info %>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Address</label>
+                                                      </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                        <div class="btn-group" role="group">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <% if user.user_status == "Active" %>
+                                                  <%= link_to "De-activate", admindeactivate_path(user) %>
+                                              <% else %>
+                                                  <%= link_to "Activate", adminactivate_path(user)%>
+                                              <% end %>
+                                            </td>
+                                          </tr>
+                                      <% end %>
+                                  <% end %>
+                                </table>
+                              </div>
+                              <div class="tab-pane fade" id="tabservicerequests">
+                                <table>
+                                  <tr>
+                                    <td><b>Name</b></td>
+                                    <td><b>Email</b></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                  <% @users.each do |user| %>
+                                      <% if user.service_roles_id == 2 and user.user_status != "Pending" %>
+                                          <tr>
+                                            <td>
+                                              <%= user.user_firstname  %> <%= user.user_lastname  %>
+                                            </td>
+                                            <td>
+                                              <%= user.user_email %>
+                                            </td>
+                                            <td>
+                                              <button data-toggle="modal" data-target="#squarespaceModal-<%= user.id %>" style="height: auto; width: auto">Details</button>
+                                              <!-- line modal -->
+                                              <div class="modal fade" id="squarespaceModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                      <h3 class="modal-title" id="lineModalLabel">Details</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                      <div class="form-group">
+                                                        <label>Name</label>
+                                                        <%= user.user_firstname  %> <%= user.user_lastname  %>
+
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Email</label>
+                                                        <%= user.user_email %>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Status</label>
+                                                        <%= user.user_status %>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Information</label>
+                                                        <%= user.user_info %>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label>Address</label>
+                                                      </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                        <div class="btn-group" role="group">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <% if user.user_status == "Active" %>
+                                                  <%= link_to "De-activate", admindeactivate_path(user) %>
+                                              <% else %>
+                                                  <%= link_to "Activate", adminactivate_path(user)%>
+                                              <% end %>
+                                            </td>
+                                          </tr>
+                                      <% end %>
+                                  <% end %>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
                 <div class="tab-pane fade" id="tab5default">Default 5</div>
               </div>
             </div>
