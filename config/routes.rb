@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   post 'myprofile/create'
   get 'admin/index'
+  get 'search/index'
 
   resources :admin
 

@@ -11,6 +11,6 @@ class WelcomeController < ApplicationController
     @result.each  do |item|
       puts(item.email)
     end
-    redirect_to welcome_index_path
+    redirect_to search_index_path
   end
 end
