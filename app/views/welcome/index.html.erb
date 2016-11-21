@@ -3,7 +3,20 @@
   <div class="inner">
     <header>
       <h1>This is ServicesNearBy, a place where you<br />
-        can find services near you.<a href="http://html5up.net">....</a>.</h1>
+        can find services near you......</h1>
+      <div class="container">
+        <div class="row">
+          <div class="search">
+            <%= form_tag :action => 'search' do %>
+                <%= text_field_tag 'search_box' %>
+                <%= submit_tag 'Search'%>
+            <% end %>
+            <!-- <%=text_field_tag 'search_box' , nil, placeholder: 'Enter search term...' , class: 'form-control input-sm'%>
+            <%= button_to('Search', welcome_search_path, class: 'button fit' ) %> -->
+          </div>
+        </div>
+      </div>
+
     </header>
     <section class="tiles">
       <article class="style1">

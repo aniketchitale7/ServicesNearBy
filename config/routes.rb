@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'myprofile/myprofile'
   root 'welcome#index'
+  post 'welcome/search'
 
   post 'myprofile/create'
   get 'admin/index'
+  get 'search/index'
 
   resources :admin
 
