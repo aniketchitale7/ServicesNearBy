@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20161106054018) do
   end
 
   create_table "service_completed", force: :cascade do |t|
-    t.integer "service_users_id",    null: false
-    t.integer "service_services_id", null: false
+    t.integer "service_user_id",    null: false
+    t.integer "service_service_id", null: false
     t.string  "completed"
-    t.index ["service_services_id"], name: "index_service_completed_on_service_services_id"
-    t.index ["service_users_id"], name: "index_service_completed_on_service_users_id"
+    t.index ["service_service_id"], name: "index_service_completed_on_service_service_id"
+    t.index ["service_user_id"], name: "index_service_completed_on_service_user_id"
   end
 
   create_table "service_privileges", force: :cascade do |t|
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 20161106054018) do
   end
 
   create_table "service_reviews", force: :cascade do |t|
-    t.integer "service_users_id",    null: false
-    t.integer "service_services_id", null: false
+    t.integer "service_user_id",    null: false
+    t.integer "service_service_id", null: false
     t.string  "review_info"
     t.integer "review_rating"
-    t.index ["service_services_id"], name: "index_service_reviews_on_service_services_id"
-    t.index ["service_users_id"], name: "index_service_reviews_on_service_users_id"
+    t.index ["service_service_id"], name: "index_service_reviews_on_service_service_id"
+    t.index ["service_user_id"], name: "index_service_reviews_on_service_user_id"
   end
 
   create_table "service_roles", force: :cascade do |t|
@@ -59,35 +59,33 @@ ActiveRecord::Schema.define(version: 20161106054018) do
   end
 
   create_table "service_services", force: :cascade do |t|
-    t.string  "service_name",          null: false
-    t.integer "service_addresses_id",  null: false
-    t.integer "service_categories_id", null: false
-    t.integer "service_users_id",      null: false
+    t.string  "service_name",         null: false
+    t.integer "service_categorie_id", null: false
+    t.integer "service_user_id",      null: false
     t.string  "phoneNo"
     t.string  "keywords"
-    t.string  "service_time",          null: false
+    t.string  "service_time",         null: false
     t.decimal "service_price"
-    t.string  "service_status",        null: false
+    t.string  "service_status",       null: false
     t.string  "service_description"
-    t.index ["service_addresses_id"], name: "index_service_services_on_service_addresses_id"
-    t.index ["service_categories_id"], name: "index_service_services_on_service_categories_id"
-    t.index ["service_users_id"], name: "index_service_services_on_service_users_id"
+    t.index ["service_categorie_id"], name: "index_service_services_on_service_categorie_id"
+    t.index ["service_user_id"], name: "index_service_services_on_service_user_id"
   end
 
   create_table "service_users", force: :cascade do |t|
-    t.string   "user_name",            null: false
-    t.string   "user_firstname",       null: false
-    t.string   "user_lastname",        null: false
+    t.string   "user_name",          null: false
+    t.string   "user_firstname",     null: false
+    t.string   "user_lastname",      null: false
     t.string   "user_phone"
-    t.string   "user_email",           null: false
+    t.string   "user_email",         null: false
     t.string   "user_info"
     t.string   "user_status"
-    t.integer  "service_roles_id"
-    t.integer  "service_addresses_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["service_addresses_id"], name: "index_service_users_on_service_addresses_id"
-    t.index ["service_roles_id"], name: "index_service_users_on_service_roles_id"
+    t.integer  "service_role_id"
+    t.integer  "service_address_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["service_address_id"], name: "index_service_users_on_service_address_id"
+    t.index ["service_role_id"], name: "index_service_users_on_service_role_id"
   end
 
   create_table "users", force: :cascade do |t|

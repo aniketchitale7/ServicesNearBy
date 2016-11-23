@@ -1,5 +1,4 @@
 class ServiceUser < ActiveRecord::Base
-  has_many :service_services
   belongs_to :service_address
   belongs_to :service_role
 

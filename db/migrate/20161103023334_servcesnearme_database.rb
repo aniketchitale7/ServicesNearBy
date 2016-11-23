@@ -32,8 +32,8 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
       t.string 'user_email', null:false
       t.string 'user_info'
       t.string 'user_status'
-      t.references :service_roles
-      t.references :service_addresses
+      t.belongs_to :service_role
+      t.belongs_to :service_address
       t.timestamps
     end
 
@@ -45,9 +45,8 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
 
     create_table :service_services do |t|
       t.string 'service_name' , null: false
-      t.references :service_addresses , null: false
-      t.references :service_categories, null: false
-      t.references :service_users, null: false
+      t.belongs_to :service_categorie, null: false
+      t.belongs_to :service_user, null: false
       t.string 'phoneNo'
       t.string 'keywords'
       t.string 'service_time', null: false
@@ -57,14 +56,14 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
     end
 
     create_table :service_completed do |t|
-      t.references :service_users, null: false
-      t.references :service_services, null: false
+      t.belongs_to :service_user, null: false
+      t.belongs_to :service_service, null: false
       t.string 'completed'
     end
 
     create_table :service_reviews do |t|
-      t.references :service_users, null: false
-      t.references :service_services, null: false
+      t.belongs_to :service_user, null: false
+      t.belongs_to :service_service, null: false
       t.string 'review_info'
       t.integer 'review_rating'
     end
