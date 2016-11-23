@@ -1,4 +1,8 @@
 class Service_User < ActiveRecord::Base
+  has_many :service_services
+  belongs_to :service_addresses
+  belongs_to :service_roles
+
   def self.create_service_user(user_params)
     random_token = SecureRandom.urlsafe_base64(nil, false)
     user_params[:user_session_token] = random_token

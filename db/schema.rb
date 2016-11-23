@@ -59,27 +59,31 @@ ActiveRecord::Schema.define(version: 20161106054018) do
   end
 
   create_table "service_services", force: :cascade do |t|
+    t.string  "service_name",          null: false
+    t.integer "service_addresses_id",  null: false
     t.integer "service_categories_id", null: false
     t.integer "service_users_id",      null: false
+    t.string  "phoneNo"
+    t.string  "keywords"
+    t.string  "service_time",          null: false
     t.decimal "service_price"
     t.string  "service_status",        null: false
     t.string  "service_description"
+    t.index ["service_addresses_id"], name: "index_service_services_on_service_addresses_id"
     t.index ["service_categories_id"], name: "index_service_services_on_service_categories_id"
     t.index ["service_users_id"], name: "index_service_services_on_service_users_id"
   end
 
   create_table "service_users", force: :cascade do |t|
     t.string   "user_name",            null: false
-    t.string   "user_password",        null: false
     t.string   "user_firstname",       null: false
     t.string   "user_lastname",        null: false
     t.string   "user_phone"
     t.string   "user_email",           null: false
-    t.text     "user_info"
+    t.string   "user_info"
     t.string   "user_status"
     t.integer  "service_roles_id"
     t.integer  "service_addresses_id"
-    t.string   "user_session_token"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["service_addresses_id"], name: "index_service_users_on_service_addresses_id"
