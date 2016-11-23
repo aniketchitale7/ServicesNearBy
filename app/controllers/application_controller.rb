@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(user)
     puts user.email
-    @service_user = Service_User.find_by_user_email(user.email)
+    @service_user = ServiceUser.find_by_user_email(user.email)
     session[:logged_user] = @service_user
     if @service_user == nil
       session[:roleid] = -1
