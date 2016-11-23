@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-serviceRole = [{:role_name => 'Admin' , :role_description => 'Admin'  } ,
+service_role = [{:role_name => 'Admin' , :role_description => 'Admin'  } ,
                {:role_name => 'Vendor' , :role_description => 'Vendor' },
                {:role_name => 'User' , :role_description => 'User' }]
 
 
-serviceAddress = [{:address_line1 => '1100 Oakcrest Street', :address_line2 => 'Apt B', :address_zip => '52246',
+service_address = [{:address_line1 => '1100 Oakcrest Street', :address_line2 => 'Apt B', :address_zip => '52246',
                    :address_city => "Iowa City" ,
                    :address_state => "IA" ,:address_country => "USA" ,:address_lattitute => 41.6297493 ,
                    :address_longitude => -91.6109434} ,
@@ -31,7 +31,7 @@ serviceAddress = [{:address_line1 => '1100 Oakcrest Street', :address_line2 => '
 service_user = [{:user_name => 'services', :user_firstname => 'Services' ,
                  :user_lastname => 'NearMe' , :user_phone => '3192375499' ,
                  :user_email => 'servicesnearby@gmail.com' , :user_info => 'I am Awesome' , :user_status => 'Active',
-                 :service_roles_id => 2, :service_addresses_id => 1}
+                 :service_role_id => 2, :service_address_id => 1}
 
                 # {:user_name => 'ashrivastava', :user_firstname => 'Ankur' ,
                 #  :user_lastname => 'Shrivastava' , :user_phone => '3192375499' ,
@@ -45,7 +45,7 @@ service_user = [{:user_name => 'services', :user_firstname => 'Services' ,
     ]
 
 
-serviceCategory = [{:service_name => 'Repairs',
+service_category = [{:service_name => 'Repairs',
                     :service_information => 'This include repair of Computers, Air Conditioners, Dryers, Televisions, Refrigerators, Others',
                     :service_status => 'Active'} ,
                    {:service_name => 'Home Decor',
@@ -70,15 +70,15 @@ services_ser = [{:service_name => 'Stella Home Decore', :service_addresses_id =>
                 }]
 
 
-serviceRole.each do |serviceadd|
+service_role.each do |serviceadd|
   ServiceRole.create!(serviceadd)
 end
 
-serviceAddress.each do |serviceadd|
+service_address.each do |serviceadd|
   ServiceAddress.create!(serviceadd)
 end
 
-serviceCategory.each do |servicecat|
+service_category.each do |servicecat|
   ServiceCategory.create!(servicecat)
 end
 
