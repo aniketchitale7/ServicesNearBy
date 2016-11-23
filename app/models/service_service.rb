@@ -1,6 +1,6 @@
-class Service_Service < ActiveRecord::Base
-  belongs_to :service_addresses
-  belongs_to :service_categories
-  belongs_to :service_users
+class ServiceService < ActiveRecord::Base
+  belongs_to :service_address
+  belongs_to :service_category
+  belongs_to :service_user
 
 end

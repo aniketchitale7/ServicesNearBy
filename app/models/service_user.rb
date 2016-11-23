@@ -1,7 +1,7 @@
-class Service_User < ActiveRecord::Base
+class ServiceUser < ActiveRecord::Base
   has_many :service_services
-  belongs_to :service_addresses
-  belongs_to :service_roles
+  belongs_to :service_address
+  belongs_to :service_role
 
   def self.create_service_user(user_params)
     random_token = SecureRandom.urlsafe_base64(nil, false)

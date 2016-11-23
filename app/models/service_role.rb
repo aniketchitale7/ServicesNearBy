@@ -1,4 +1,4 @@
-class Service_Service < ActiveRecord::Base
+class ServiceRole < ActiveRecord::Base
   has_many :service_users
 
 end

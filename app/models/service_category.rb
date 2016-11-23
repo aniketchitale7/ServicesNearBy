@@ -1,3 +1,3 @@
-class Service_Category < ActiveRecord::Base
+class ServiceCategory < ActiveRecord::Base
   has_many :service_services
 end
