@@ -25,7 +25,7 @@ class MyprofileController < ApplicationController
                'user_firstname' => params.require(:user_firstname),
                'user_lastname' => params.require(:user_lastname),
                'user_phone' => params.require(:user_phone),
-               'service_roles_id' => params.require(:service_roles_id),
+               'service_roles_id' => 1,
                'user_email' => session[:user_emailid],
                'user_password' => "DUMMY",
                'user_name' => "testing",
@@ -42,13 +42,14 @@ class MyprofileController < ApplicationController
     # @user_service.created_at = "25-Nov-1992"
     # @user_service.updated_at = "25-Nov-1992"
 
+    #@service_user = Service_User.find_by_user_email(user.email)
     @user = Service_User.find_by_user_email(session[:user_emailid])
     puts 'inside create'
-    puts @user.service_roles_id
+    #puts @user.service_roles_id
     session[:userinfohash] =my_hash
     #session[:lastname] = @service_user.user_lastname
 
-    if @user.service_roles_id == -1
+    if @user == nil
       @user_new = Service_User.create_service_user(my_hash)
       redirect_to welcome_index_path
     else
