@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 20161106054018) do
   end
 
   create_table "service_users", force: :cascade do |t|
-    t.string   "user_name",          null: false
     t.string   "user_firstname",     null: false
     t.string   "user_lastname",      null: false
     t.string   "user_phone"

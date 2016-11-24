@@ -28,12 +28,17 @@ class MyprofileController < ApplicationController
     address["address_lattitute"] = -91.6109434
     address["address_longitude"] = 41.6297493
 
-
     @add = ServiceAddress.createAddress(address)
-    print("Value of Address id is " )
     print(@add.id)
+    @roleid = ServiceRole.find_by_role_name("Admin")
 
-    @user = @add.service_users.create(:user_name => "Aniket")
+    @user = @add.service_users.create(:user_firstname => params["user_firstname"],
+                                      :user_lastname => params["user_lastname"],
+                                      :user_phone => params["user_phone"],
+                                      :user_email => current_user.email, :user_status => 'Active' ,
+                                      :service_role_id => @roleid.id
+    )
+
     redirect_to welcome_index_path
 
   end

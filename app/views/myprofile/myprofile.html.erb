@@ -9,40 +9,80 @@
         <section>
 
           <div class="row uniform">
-            <div class="field">
-              <input type="text" name="user_firstname"  class="form-control input-lg" placeholder="First Name"  />
-            </div>
-            <div class="field">
-              <input type="text" name="user_lastname" class="form-control input-lg" placeholder="Last Name"  />
-            </div>
-            <div class="field">
-              <b>Email:  </b><%= session[:user_emailid] %>
-            </div>
-            <div class="field" style="display: none;">
-              <b>User</b>
-            </div>
-            <div class="field">
-              <input type="text" name="user_phone"  class="form-control input-lg" placeholder="Contact Number"  />
-            </div>
-            <div class="field">
-              <input type="text" name="addressline1" value="" class="form-control input-lg" placeholder="Address Line 1"  />
-            </div>
-            <div class="field">
-              <input type="text" name="addressline2" value="" class="form-control input-lg" placeholder="Address Line 2"  />
-            </div>
-            <div class="field">
-              <input type="text" name="zip" value="" class="form-control input-lg" placeholder="Zip"  />
-            </div>
-            <div class="field">
-              <input type="text" name="city" value="" class="form-control input-lg" placeholder="City"  />
-            </div>
-            <div class="field">
-              <input type="text" name="country" value="" class="form-control input-lg" placeholder="Country"  />
-            </div>
-            <br />
-            <div class="actions">
-              <button type="button" onClick="parent.location='/welcome/index'">Skip</button>&nbsp;&nbsp;<button type="submit">UDPATE</button>
-            </div>
+            <% @loginUser = session[:logged_user]
+               @address = session[:loggedUserAddress]%>
+            <% if @loginUser != nil %>
+                <div class="field">
+                  <input type="text" name="user_firstname" value= "<%=@loginUser["user_firstname"]%>" class="form-control input-lg" placeholder="First Name"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="user_lastname" value= "<%=@loginUser["user_lastname"]%>" class="form-control input-lg" placeholder="Last Name"  />
+                </div>
+                <div class="field">
+                  Email:  </b><%= current_user.email%>
+                </div>
+                <div class="field" style="display: none;">
+                  <b>User</b>
+                </div>
+                <div class="field">
+                  <input type="text" name="user_phone"  value= "<%=@loginUser["user_phone"]%>" class="form-control input-lg" placeholder="Contact Number"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="addressline1" value= "<%=@address["address_line1"]%>" class="form-control input-lg" placeholder="Address Line 1"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="addressline2" value= "<%=@address["address_line2"]%>" class="form-control input-lg" placeholder="Address Line 2"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="zip" value= "<%=@address["address_zip"]%>" class="form-control input-lg" placeholder="Zip"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="city" value= "<%=@address["address_city"]%>" class="form-control input-lg" placeholder="City"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="country" value= "<%=@address["address_country"]%>" class="form-control input-lg" placeholder="Country"  />
+                </div>
+                <br />
+                <div class="actions">
+                  <button type="button" onClick="parent.location='/welcome/index'">Skip</button>&nbsp;&nbsp;<button type="submit">UDPATE</button>
+                </div>
+                <%else%>
+                <div class="field">
+                  <input type="text" name="user_firstname"  class="form-control input-lg" placeholder="First Name"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="user_lastname" class="form-control input-lg" placeholder="Last Name"  />
+                </div>
+                <div class="field">
+                  Email:  </b><%= current_user.email%>
+                </div>
+                <div class="field" style="display: none;">
+                  <b>User</b>
+                </div>
+                <div class="field">
+                  <input type="text" name="user_phone"  class="form-control input-lg" placeholder="Contact Number"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="addressline1" value="" class="form-control input-lg" placeholder="Address Line 1"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="addressline2" value="" class="form-control input-lg" placeholder="Address Line 2"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="zip" value="" class="form-control input-lg" placeholder="Zip"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="city" value="" class="form-control input-lg" placeholder="City"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="country" value="" class="form-control input-lg" placeholder="Country"  />
+                </div>
+                <br />
+                <div class="actions">
+                  <button type="button" onClick="parent.location='/welcome/index'">Skip</button>&nbsp;&nbsp;<button type="submit">UDPATE</button>
+                </div>
+            <% end %>
+
           </div>
         </section>
       </form>

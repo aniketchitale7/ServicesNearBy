@@ -25,7 +25,6 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
     end
 
     create_table :service_users  do |t|
-      t.string 'user_name', null: false
       t.string 'user_firstname', null: false
       t.string 'user_lastname', null: false
       t.string 'user_phone'

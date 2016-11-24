@@ -28,7 +28,7 @@ service_address = [{:address_line1 => '1100 Oakcrest Street', :address_line2 => 
 ]
 
 
-service_user = [{:user_name => 'services', :user_firstname => 'Services' ,
+service_user = [{:user_firstname => 'Services' ,
                  :user_lastname => 'NearMe' , :user_phone => '3192375499' ,
                  :user_email => 'servicesnearby@gmail.com' , :user_info => 'I am Awesome' , :user_status => 'Active',
                  :service_role_id => 2, :service_address_id => 1}
