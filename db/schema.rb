@@ -59,16 +59,18 @@ ActiveRecord::Schema.define(version: 20161106054018) do
   end
 
   create_table "service_services", force: :cascade do |t|
-    t.string  "service_name",         null: false
-    t.integer "service_categorie_id", null: false
-    t.integer "service_user_id",      null: false
+    t.string  "service_name",        null: false
+    t.integer "service_category_id", null: false
+    t.integer "service_user_id",     null: false
+    t.integer "service_address_id",  null: false
     t.string  "phoneNo"
     t.string  "keywords"
-    t.string  "service_time",         null: false
+    t.string  "service_time",        null: false
     t.decimal "service_price"
-    t.string  "service_status",       null: false
+    t.string  "service_status",      null: false
     t.string  "service_description"
-    t.index ["service_categorie_id"], name: "index_service_services_on_service_categorie_id"
+    t.index ["service_address_id"], name: "index_service_services_on_service_address_id"
+    t.index ["service_category_id"], name: "index_service_services_on_service_category_id"
     t.index ["service_user_id"], name: "index_service_services_on_service_user_id"
   end
 

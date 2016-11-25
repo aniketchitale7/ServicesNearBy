@@ -44,8 +44,9 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
 
     create_table :service_services do |t|
       t.string 'service_name' , null: false
-      t.belongs_to :service_categorie, null: false
+      t.belongs_to :service_category, null: false
       t.belongs_to :service_user, null: false
+      t.belongs_to :service_address, null: false
       t.string 'phoneNo'
       t.string 'keywords'
       t.string 'service_time', null: false

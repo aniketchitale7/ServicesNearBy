@@ -58,12 +58,12 @@ service_category = [{:service_name => 'Repairs',
 
 
 
-services_ser = [{:service_name => 'Stella Home Decore', :service_addresses_id => 1, :service_categories_id => 2, :service_users_id => 1,
+services_ser = [{:service_name => 'Stella Home Decore', :service_address_id => 1, :service_category_id => 2, :service_user_id => 1,
                  :phoneNo => '31933454', :keywords => 'Home Decore,Painting,Wall Painting,Design,Furniture,wallpaper' , :service_time => 'Monday - Saturday 11:00 - 9:00',
                  :service_price => 20.0,
                  :service_status => 'Active' , :service_description => 'Home Furnishing Stores, Furniture Stores'
                 } ,
-                {:service_name => 'Everything Works', :service_addresses_id => 2, :service_categories_id => 1, :service_users_id => 1,
+                {:service_name => 'Everything Works', :service_address_id => 2, :service_category_id => 1, :service_user_id => 1,
                  :phoneNo => '31933454', :keywords => 'repairs,solder,computer,ac,electronics,laptop' , :service_time => 'Monday - Saturday 11:00 - 9:00',
                  :service_price => 40.0,
                  :service_status => 'Active' , :service_description => 'This include repair of Computers, Air Conditioners, Dryers, Televisions, Refrigerators, Others',
@@ -87,7 +87,9 @@ service_user.each do |user|
 end
 
 
-
+services_ser.each do |user|
+  ServiceService.create!(user)
+end
 
 
 
