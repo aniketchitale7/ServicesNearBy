@@ -3,17 +3,19 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(user)
     puts user.email
-    @service_user = Service_User.find_by_user_email(user.email)
+    @service_user = ServiceUser.find_by_user_email(user.email)
     session[:logged_user] = @service_user
     if @service_user == nil
       session[:roleid] = -1
-      puts "NILL"
       session[:user_emailid] = user.email
       myprofile_myprofile_path
     else
-      session[:roleid] = @service_user.service_roles_id
-      puts @service_user.service_roles_id
-      if @service_user.service_roles_id ==0
+      session[:loggedUserAddress] =  @service_user.service_address
+      print("Value of address")
+      print(session[:loggedUserAddress]["address_line1"])
+
+      session[:roleid] = @service_user.service_role_id
+      if @service_user.service_role_id ==0
         session[:tab] = 0
         if @service_user.user_status == "Active"
           admin_index_path
