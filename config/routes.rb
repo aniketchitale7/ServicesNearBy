@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'myprofile/myprofile'
   root 'welcome#index'
+  post 'application/search'
   post 'welcome/search'
 
   post 'myprofile/create'
