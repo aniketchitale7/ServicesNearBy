@@ -4,10 +4,10 @@ class AdminController < ApplicationController
   def index
 
     puts "kalyan"
-    @users = Service_User.all
+    @users = ServiceUser.all
     puts @users.length
-    @category = Service_Category.all
-    @service = Service_Service.all
+    @category = ServiceCategory.all
+    @service = ServiceService.all
 
 
   end
@@ -15,7 +15,7 @@ class AdminController < ApplicationController
 
   def show
     id = params[:id] # retrieve movie ID from URI route
-    @user = Service_User.find(id)
+    @user = ServiceUser.find(id)
     my_hash = {'user_status' => "Active",
                 'service_roles_id' => 2}
     @user.update_attributes!(my_hash)
@@ -26,7 +26,7 @@ class AdminController < ApplicationController
 
   def reject
     id = params[:id] # retrieve movie ID from URI route
-    @user = Service_User.find(id)
+    @user = ServiceUser.find(id)
     my_hash = {'user_status' => "Active"}
     @user.update_attributes!(my_hash)
     puts "Done"
@@ -35,7 +35,7 @@ class AdminController < ApplicationController
 
   def activate
     id = params[:id] # retrieve movie ID from URI route
-    @user = Service_User.find(id)
+    @user = ServiceUser.find(id)
     my_hash = {'user_status' => "Active"}
     @user.update_attributes!(my_hash)
     puts "Done"
@@ -44,7 +44,7 @@ class AdminController < ApplicationController
 
   def deactivate
     id = params[:id] # retrieve movie ID from URI route
-    @user = Service_User.find(id)
+    @user = ServiceUser.find(id)
     my_hash = {'user_status' => "Inactive"}
     @user.update_attributes!(my_hash)
     puts "Done"
@@ -55,7 +55,7 @@ class AdminController < ApplicationController
   def deactivatecategory
     id = params[:id] # retrieve movie ID from URI route
     puts id
-    @category = Service_Category.find(id)
+    @category = ServiceCategory.find(id)
     my_hash = {'service_status' => "Inactive"}
     @category.update_attributes!(my_hash)
     puts "Done"
@@ -64,7 +64,7 @@ class AdminController < ApplicationController
 
   def activatecategory
     id = params[:id] # retrieve movie ID from URI route
-    @category = Service_Category.find(id)
+    @category = ServiceCategory.find(id)
     my_hash = {'service_status' => "Active"}
     @category.update_attributes!(my_hash)
     puts "Done"
