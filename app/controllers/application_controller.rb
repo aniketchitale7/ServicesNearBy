@@ -8,12 +8,9 @@ class ApplicationController < ActionController::Base
     if @service_user == nil
       session[:roleid] = -1
       session[:user_emailid] = user.email
-      myprofile_myprofile_path
+      myprofile_index_path
     else
       session[:loggedUserAddress] =  @service_user.service_address
-      print("Value of address")
-      print(session[:loggedUserAddress]["address_line1"])
-
       session[:roleid] = @service_user.service_role_id
       if @service_user.service_role_id ==0
           session[:tab] = 0
@@ -24,7 +21,7 @@ class ApplicationController < ActionController::Base
         end
 
       else
-        if @service_user.user_status == "Active"
+        if @service_user.user_status == "Active" || @service_user.user_status == "Pending"
             welcome_index_path
         else
           destroy_user_session_path

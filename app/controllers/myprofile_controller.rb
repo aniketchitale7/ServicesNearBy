@@ -14,6 +14,15 @@ class MyprofileController < ApplicationController
 
   end
 
+  def show
+
+
+  end
+
+  def edit
+
+  end
+
 
   def create
 
@@ -41,6 +50,19 @@ class MyprofileController < ApplicationController
 
     redirect_to welcome_index_path
 
+  end
+
+  def requestvendoraccount
+    if session[:logged_user] != nil and session[:roleid] == 2
+        @message = "Congratulation You already Have Vendor Account"
+    else
+      @message = "You can Create Vendor Account by submitting the Request"
+    end
+  end
+
+  def createVendorAccount
+
+    redirect_to welcome_index_path
   end
 
 
