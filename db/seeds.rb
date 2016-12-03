@@ -33,12 +33,12 @@ service_user = [{:user_firstname => 'Services' ,
                  :user_email => 'servicesnearby@gmail.com' , :user_info => 'I am Awesome' , :user_status => 'Active',
                  :service_role_id => 2, :service_address_id => 1},
 
-                {:user_name => 'ashrivastava', :user_firstname => 'Ankur' ,
+                { :user_firstname => 'Ankur' ,
                  :user_lastname => 'Shrivastava' , :user_phone => '3192375499' ,
                  :user_email => 'shrivastava.ankur1190@gmail.com' , :user_info => 'I am Dude' , :user_status => 'Active',
                  :service_roles_id => 3, :service_addresses_id => 2},
 
-                {:user_name => 'ajinkya', :user_firstname => 'Ajinkya' ,
+                {:user_firstname => 'Ajinkya' ,
                  :user_lastname => 'Kulkurni' , :user_phone => '3192375499' ,
                  :user_email => 'ajinkya.kulkarni1102@gmail.com' , :user_info => 'I am Madrid' , :user_status => 'Active',
                  :service_roles_id => 1, :service_addresses_id => 3}
