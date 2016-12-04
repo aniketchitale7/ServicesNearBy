@@ -5,9 +5,9 @@
       <br/>
       <br/>
       <br/>
-      <form action="create" method="post" accept-charset="utf-8" class="form" role="form">   <h2>My Profile</h2>
+      <form action="/myprofile/<%=session[:userid]%>/" method="post" accept-charset="utf-8" class="form" role="form">   <h2>My Profile</h2>
         <section>
-
+          <input name="_method" type="hidden" value="patch" />
           <div class="row uniform">
             <% @loginUser = session[:logged_user]
                @address = session[:loggedUserAddress]%>

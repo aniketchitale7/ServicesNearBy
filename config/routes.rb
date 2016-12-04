@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get 'myprofile/createVendorAccount'
   resources :myprofile
   resources :businessprofile
+  get 'myprofile/update'
   #post 'myprofile/create'
-
   #get 'myprofile/edit'
   get 'admin/index'
   get 'search/index'
