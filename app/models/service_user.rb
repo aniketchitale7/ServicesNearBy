@@ -1,6 +1,7 @@
 class ServiceUser < ActiveRecord::Base
   belongs_to :service_address
   belongs_to :service_role
+  has_many  :service_reviews
 
   def self.create_service_user(user_params)
     random_token = SecureRandom.urlsafe_base64(nil, false)

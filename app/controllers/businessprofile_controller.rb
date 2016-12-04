@@ -103,6 +103,8 @@ class BusinessprofileController < ApplicationController
   end
 
   def destroy
-    print("Inside Destroy")
+    @service = ServiceService.find(params[:id])
+    @service.destroy
+    redirect_to businessprofile_index_path
   end
 end
