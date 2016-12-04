@@ -54,14 +54,17 @@ class MyprofileController < ApplicationController
 
   def requestvendoraccount
     if session[:logged_user] != nil and session[:roleid] == 2
-        @message = true
+      @accountRequested = true
     else
-      @message = false
+       @accountRequested = false;
     end
   end
 
   def createVendorAccount
-
+      @loggedUser = session[:logged_user]
+      @user =  ServiceUser.find(@loggedUser["id"])
+      ServiceUser.update(@user.id , :user_status => "Pending")
+      print("User Updated")
     redirect_to welcome_index_path
   end
 
