@@ -54,9 +54,9 @@ class MyprofileController < ApplicationController
 
   def requestvendoraccount
     if session[:logged_user] != nil and session[:roleid] == 2
-        @message = "Congratulation You already Have Vendor Account"
+        @message = true
     else
-      @message = "You can Create Vendor Account by submitting the Request"
+      @message = false
     end
   end
 
