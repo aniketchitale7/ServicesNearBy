@@ -1,0 +1,54 @@
+<body>
+<div id = "wrapper">
+  <div id="main">
+    <div class="inner">
+      <br/>
+      <br/>
+      <br/>
+      <%= form_tag businessprofile_path(@item), :method => :put do %>   <h2>Edit Business Page</h2>
+        <section>
+          <div class="row uniform">
+            <% @address = @item.service_address %>
+            <div class="field">
+              Shop Name: <input type="text" name="service_name" value= "<%=@item["service_name"]%>" class="form-control input-lg" placeholder="First Name"  />
+            </div>
+            <div class="field">
+              Phone Number: <input type="text" name="phoneNo"  value= "<%=@item["phoneNo"]%>" class="form-control input-lg" placeholder="Contact Number"  />
+            </div>
+            <div class="field">
+              Time: <input type="text" name="service_time" value= "<%=@item["service_time"]%>" class="form-control input-lg" placeholder="Address Line 1"  />
+            </div>
+            <div class="field">
+              Price:<input type="text" name="service_price" value= "<%=@item["service_price"]%>" class="form-control input-lg" placeholder="Address Line 2"  />
+            </div>
+            <div class="field">
+              Description: <input type="text" name="service_description" value= "<%=@item["service_description"]%>" class="form-control input-lg" placeholder="Zip"  />
+            </div>
+            <div class="field">
+              Address Line 1: <input type="text" name="address_line1" value= "<%=@address["address_line1"]%>" class="form-control input-lg" placeholder="Zip"  />
+            </div>
+            <div class="field">
+              Address Line 2:: <input type="text" name="address_line2" value= "<%=@address["address_line2"]%>" class="form-control input-lg" placeholder="Zip"  />
+            </div>
+            <div class="field">
+              Zip Code: <input type="text" name="address_zip" value= "<%=@address["address_zip"]%>" class="form-control input-lg" placeholder="Zip"  />
+            </div>
+            <div class="field">
+              City: <input type="text" name="address_city" value= "<%=@address["address_city"]%>" class="form-control input-lg" placeholder="Zip"  />
+            </div>
+            <div class="field">
+              Country: <input type="text" name="address_country" value= "<%=@address["address_country"]%>" class="form-control input-lg" placeholder="Zip"  />
+            </div>
+
+            <br />
+            <div class="actions">
+              <button type="submit">UDPATE</button>
+            </div>
+          </div>
+        </section>
+          <%end%>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
