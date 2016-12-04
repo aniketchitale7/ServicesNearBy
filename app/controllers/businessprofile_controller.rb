@@ -1,11 +1,13 @@
 class BusinessprofileController < ApplicationController
 
   def index
+    @category = ServiceCategory.all
 
     @service = ServiceService.all
     @finalResult = []
     @service.each  do |item|
       @vendorAddress = item.service_address
+
       @hashValue= Hash.new
       @hashValue["object"] = item
       @hashValue["service_name"] = item.service_name
@@ -28,8 +30,7 @@ class BusinessprofileController < ApplicationController
 
 
   def new
-
-
+    @category = ServiceCategory.all
   end
 
 
@@ -71,6 +72,32 @@ class BusinessprofileController < ApplicationController
 
   def create
 
+    @hashValue= Hash.new
+    @addressHash = Hash.new
+    @addressHash["address_line1"] = params["address_line1"]
+    @addressHash["address_line2"] = params["address_line2"]
+    @addressHash["address_zip"] = params["address_zip"]
+    @addressHash["address_city"] = params["address_city"]
+    @addressHash["address_country"] = params["address_country"]
+    @addressHash["address_state"] = params["address_state"]
+    @add = ServiceAddress.createAddress(@addressHash)
+
+    @hashValue["service_name"] = params["service_name"]
+    @hashValue["phoneNo"] = params["phoneNo"]
+    @hashValue["service_time"] = params["service_time"]
+    @hashValue["service_price"] = params["service_price"]
+    @hashValue["service_description"] = params["service_description"]
+    @hashValue["service_category_id"] = params["category"]
+    @currentUser =  ServiceUser.find_by_user_email(current_user.email)
+    @hashValue["service_user_id"] = @currentUser.id
+    @hashValue["service_address_id"] = @add.id
+    @hashValue["service_status"] = "Pending"
+
+
+
+
+    @user = ServiceService.create(@hashValue)
+    redirect_to businessprofile_index_path
 
 
   end
