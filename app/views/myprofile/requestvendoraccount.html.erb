@@ -1,7 +1,93 @@
-<h1> Are you sure you want to request vendor Account</h1>
+<style>
+  div.scrollableDiv {
+    width: 100%;
+    height: 450px;
+    overflow: scroll;
+  }
+</style>
 
-<%=@accountRequested%>
+<div id="main" xmlns="http://www.w3.org/1999/html">
+  <div class="inner">
+    <div class="container">
+      <div class="row">
+        <div class="search">
 
-<form action="/myprofile/createVendorAccount" method="get" accept-charset="utf-8" class="form" role="form">
-  <button type="submit">Edit</button>
- </form>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <p>
+    <%=@message%>
+<div class="scrollableDiv">
+    <table><tbody>
+    <p align="center" class="submenu"><strong><u>SUPPLIER /  VENDOR TERMS AND CONDITIONS<br/>ACCEPTANCE</u></strong></p>
+    <p align="center" class="left">                          Unless otherwise specifically  agreed to in writing, the following terms and conditions shall apply to the <strong>SUPPLIER&rsquo;S</strong> acceptance of Purchase Order  and <strong>ServicesNearBy&rsquo;s  (SNB</strong>)  acceptance of ordered items. The acceptance of order by the <strong>SUPPLIER</strong> shall be conclusive evidence  of the <strong>SUPPLIER&rsquo;S </strong>approval, consent,  and agreement to the terms and conditions herein. Any terms and conditions  listed on any <strong>SUPPLIER</strong> documents  which are in addition to or in conflict with these terms and conditions are  objected to and shall not become part of this transaction.</p>
+    <p align="center" class="submenu"> <br>
+      <strong><u>CONFIRMATION  OF ORDER</u></strong></p>
+    <p align="center" class="left">                          The <strong>SUPPLIER</strong> must acknowledge the order and notify <strong>SNB</strong>, within one business day, if the order will be fulfilled or  not.<span class="submenu"><br></span></p>
+    <p align="center" class="submenu"><strong><u>DELAY IN DELIVERY</u></strong></p>
+    <p align="center" class="left">                          If the <strong>SUPPLIER</strong> becomes aware of any circumstances that are likely to  cause a delay in delivery of the ordered item(s), the <strong>SUPPLIER</strong> will immediately notify <strong>SNB</strong> in writing stating the reason for the delay and the updated  delivery date. Upon receipt of this information, <strong>SNB</strong> reserves the right to keep or cancel the purchase order without  liability or penalty. <strong>SNB</strong> also  reserves the right to cancel a purchase order if the <strong>SUPPLIER</strong> cannot meet the needs of an expedited purchase order. </p>
+    <p align="center" class="submenu"><br>
+      <strong class="submenu"><u>QUALITY</u></strong></p>
+    <p align="center" class="left"><strong>SUPPLIER</strong> shall maintain a quality management system, preferably one  that is approved by FAA, EASA or ISO9001 / AS9100, or which is acceptable and  appropriate for the items supplied hereunder and shall comply with general  industry standards.&nbsp; Items supplied shall  meet the requirements of the applicable technical specifications and  documentation (drawings, specifications, standards, etc.).&nbsp; It shall be the sole responsibility of the <strong>SUPPLIER</strong> to monitor that the technical  specifications regarding materials, methods, form, fitness, and function are  observed, whether or not the items have been manufactured by <strong>SUPPLIER</strong> or by any of <strong>SUPPLIER&rsquo;S </strong>subcontractors. If no  specific requirements are stated, good industry and craftsman-like practice  shall be observed. Items are to be manufactured in accordance with spares  configuration guidelines.&nbsp;</p>
+    <p align="center"><br>
+      <strong class="submenu"><u>CERTIFICATION  AND TRACEABILITY</u></strong></p>
+    <p align="center" class="left">                          All items must conform to the  Original Equipment Manufacturer's (OEMs) specifications and tests.&nbsp; An 8130-3 tag (Serviceable Tag) or Certification  of Conformance must accompany the items from <strong>SUPPLIER&rsquo;S</strong> facility, including a statement of the condition of the  item, back-up data on file for inspection, and signed by an authorized  representative of the <strong>SUPPLIER</strong>.&nbsp; Should such certification not accompany the  shipment, items will be held in quarantine and no payment will be processed  until the proper certification is received. <strong>SNB</strong> reserves the right to be supplied with and/or audit such  certification on all new items purchased. &nbsp;<strong>SNB</strong> will require traceability back to a valid FAA, EASA, OEM, or an approved source  (such as a 121 operator or a 145 repair station) and full source documentation.  All raw material, machining, and processing certifications shall be supplied at  no cost if requested.&nbsp; All Certifications  and related documentation must be retained on file by <strong>SUPPLIER</strong> for a period of at least five (5) years after completion  of this Purchase Order. <strong>SNB </strong>must be  notified in advance of order if PMA parts are to be supplied.&nbsp;</p>
+    <p align="center" class="submenu"><strong><u>LIABILITY</u></strong></p>
+    <p align="center" class="left">                          The <strong>SUPPLIER</strong> is liable for all defects in items delivered, including  concealed defects, even if they are recognizable and discovered only upon  processing, installation, and/or use, and this is not subject to any time limit  for claim by <strong>SNB</strong>. The <strong>SUPPLIER</strong> shall indemnify and hold <strong>SNB</strong> harmless from all claims arising  from infringement of industrial property rights, patents, copyrights, and other  third-party rights, and <strong>SUPPLIER</strong> agrees that it will defend at its own expense any and all suits against <strong>SNB </strong>for infringement of any United  States or foreign patent, copyright, or other intellectual property right.&nbsp; <strong>SNB</strong> has the option to reject nonconforming items.&nbsp;  All rejected items will be returned at <strong>SUPPLIER&rsquo;S</strong> expense. In urgent cases or in the event of delay in supplying  a replacement, <strong>SNB</strong> shall, at the <strong>SUPPLIER&rsquo;S</strong> expense, have the right to  remedy the defects, or to procure a replacement elsewhere.&nbsp; This shall not affect <strong>SNB&rsquo;S</strong> statutory warranty and liability claims, which are in  addition to those expressly set forth herein.&nbsp; <strong>SUPPLIER</strong> shall maintain  Aviation Product Liability Insurance in a reasonable amount, and shall provide  a Certificate of such insurance to <strong>SNB</strong> upon request.</p>
+    <p align="center" class="center"><strong><u>PACKAGING</u></strong></p>
+    <p align="center" class="left">                          Unless otherwise specified, all  packing and packaging shall comply with best commercial practice.&nbsp; The price includes all charges for such  packing, packaging, and transportation to the FCA shipping point. All items  must be packed in accordance with manufacturer specifications.&nbsp; All shipments to <strong>SNB</strong> must be visually identified with the Purchase Order number on  the exterior of package/box so that packages/boxes do not have to be opened to  verify order. Unidentified shipments may be refused and returned to sender. All  crating and pallet materials used in shipments to or on behalf of <strong>SNB </strong>must comply with the International  Plant Protection Convention&rsquo;s (IPPC) International Standards for Phytosanitary  Measures (ISPM).&nbsp; Refer to the ISPM&rsquo;s  publication Guide for Regulating Wood Packaging Material in International Trade  located on the IPPC website at <a href="http://www.ippc.int" target="_blank">http://www.ippc.int</a>.&nbsp; All Shipments must be packaged for  international shipment, failure to do so will cause <strong>SNB</strong> to repackage and assess <strong>SUPPLIER</strong> for any associated charges.&nbsp; All  Hazardous Materials/Dangerous Goods shipped to or on behalf of <strong>SNB</strong>, must be packaged, labeled, and  shipped in accordance with, and comply with the International Air Transport  Association (IATA) and Federal Aviation Administration (FAA) regulations, as  well as any and all other applicable laws and regulations.&nbsp; UN number required with hazardous materials  as per IATA and FAA regulations. All shipments must be packaged in a way that  shipped material will not be damaged.</p>
+    <p align="center" class="center"><br>
+      <strong><u>MATERIAL  SAFETY DATA SHEET (M.S.D.S.)</u></strong></p>
+    <p align="center" class="left">                          If an M.S.D.S. is required for  this material, the <strong>SUPPLIER</strong> shall  include one copy of the M.S.D.S., and it shall be identifiable and provided  with each shipment of the items furnished under this order. </p>
+    <p align="center"><br>
+      <strong class="center"><u>PAYMENT</u></strong></p>
+    <p align="center" class="left">&nbsp;All invoice payments will be issued within  seven days after the receipt and acceptance of items and payment terms.&nbsp; If the order requirements are not met,  payment, including COD shipments, will be delayed a corresponding amount of  time until such requirements are met.</p>
+    <p align="center"><span class="center"><br>
+                            <strong><u>PRICES</u></strong></span><strong><u></u></strong></p>
+    <p align="center" class="left">                          All prices are stated in U.S. Dollars  and shall stay firm during the entirety of the purchase order. Any price  increases will be absorbed by the <strong>SUPPLIER</strong>. </p>
+    <p align="center" class="center"><strong><u>NONCONFORMING  PRODUCT</u></strong></p>
+    <p align="center" class="left">                          Nonconforming items that result  from this purchase order, whether produced through manufacturing process, or a  product from overhaul/repair maintenance activity, shall be destroyed if they  cannot be repaired. In a case where an item/product is found to be  nonconforming after being sent to <strong>SNB</strong>,  the <strong>SUPPLIER</strong> must notify <strong>SNB </strong>immediately of the nonconforming item/product.</p>
+    <p align="center" class="center"><strong><u>RIGHT OF  ENTRY</u></strong></p>
+    <p align="center" class="left"><strong>SUPPLIER</strong> hereby grants to <strong>SNB</strong>,  its customers, and any applicable regulatory agencies, the right to enter on  its premises as well as other necessary places, during normal business hours,  for the purpose of inspection of <strong>SUPPLIER&rsquo;S</strong> facilities and systems to ensure <strong>SUPPLIER&rsquo;S</strong> compliance with the terms and requirements of order, including the quality of  the contracted work, records, and materials.</p>
+    <p align="center" class="center"> <strong><u>IMPORT/EXPORT  COMPLIANCE</u></strong></p>
+    <p align="center" class="left"><strong>SUPPLIER</strong> shall provide to <strong>SNB</strong> at its earliest convenience, but in no cases less than twenty-four (24) hours  before shipment, the following information for all items: (1) the applicable  United States Munitions List (&ldquo;USML&rdquo;) category or Export Control Classification  Number (&ldquo;ECCN&rdquo;); (2) the Harmonized Tariff Schedule code; and (3) the Country  of Origin.&nbsp; If an item is controlled by  the International Traffic in Arms Regulations (&ldquo;ITAR&rdquo;), <strong>SUPPLIER</strong> shall also advise<strong> SNB</strong> if the item is Significant Military Equipment (&ldquo;SME&rdquo;), a Major Component, or  under the Missile Technology Control Regime (&ldquo;MTCR&rdquo;).&nbsp; For orders shipping from outside of the  United States,<strong> SUPPLIER</strong> shall  strictly follow all <strong>SNB</strong> shipping  instructions and shall provide copies of the following documents to <strong>SNB</strong> prior to, but in no case no later  than the time of shipment:&nbsp; (1)  FAA/EASA/TCCA or other civil aircraft certification, if applicable; (2)  Commercial Shipping Invoice; (3) Packing List; (4) Airway Bill; (5) Foreign  Sales Declaration, if applicable; and (6) any other document required per  commodity type.&nbsp; If <strong>SUPPLIER</strong> is engaged in the United States in the business of  exporting, manufacturing, brokering, or any other value added service of items  controlled by the ITAR, <strong>SUPPLIER</strong> represents that it is registered with the Directorate of Defense Trade Controls  (&ldquo;DDTC&rdquo;), as may be required by 22 C.F.R. 122.1 and/or 22 C.F.R. 129.3 of the  ITAR and that it maintains an effective export/import compliance program in  accordance with DDTC guidelines.</p>
+    <p align="center" class="center"> <strong><u>DEBARMENT OF SELLER</u></strong></p>
+    <p align="center" class="left">                          If <strong>SUPPLIER</strong> (or any of its subcontractors) is debarred by the U.S.  Government from participating in transactions which involve the export of items  (whether commercial or military), <strong>SNB</strong> has the immediate available option of canceling this order without liability of  any kind to <strong>SUPPLIER</strong>.&nbsp; If <strong>SUPPLIER</strong> (or any of its subcontractors) is debarred by the U.S. Government from selling  items either directly to the government or from providing items as a  subcontractor in fulfillment of requirements originating with the U.S.  Government, <strong>SNB </strong>has the immediate  available option of canceling this order without liability of any kind to <strong>SUPPLIER</strong>.&nbsp; If <strong>SNB</strong> only becomes aware of such status of <strong>SUPPLIER</strong> (or any of its subcontractors) after receipt of the ordered items, <strong>SNB</strong> may return such items to <strong>SUPPLIER</strong> and <strong>SUPPLIER</strong> shall immediately refund all amounts paid by <strong>SNB</strong>, if any, for such items.&nbsp; It is <strong>SUPPLIER&rsquo;S</strong> responsibility to determine if its subcontractors meet the requirements of this  paragraph.</p>
+    <p align="center" class="center"> <strong><u>ASSIGNMENT  &amp; MODIFICATION</u></strong></p>
+    <p align="center" class="left"><strong>SUPPLIER</strong> shall not assign, sell, or subcontract this purchase  order, or any part thereof, without <strong>SNB&rsquo;s</strong> prior written consent.&nbsp; No modification  of this order shall be binding, unless agreed to in writing by an authorized  representative of <strong>SNB</strong>.</p>
+    <p align="center" class="center"><strong><u>OUTSIDE  MAINTENANCE FUNCTIONS</u></strong></p>
+    <p align="center" class="left"><strong>SUPPLIER </strong>shall meet all the requirements set forth by FAA and EASA  to be able to perform maintenance functions for <strong>SNB. </strong>This includes having an FAA approved drug program and a  quality management system etc.
+    </p>
+    <p class="center"><strong><u>CORRECTIVE ACTION</u></strong></p>
+    <p>Suppliers must have a system for Corrective  Action. Corrective Action refers to an internal problem solving process  initiated to prevent future delivery of defective product. Emphasis should be  on identifying potential problems and implementing a solution at the source.<br>
+      Corrective action should be  performed by an individual knowledgeable in the area or process that caused the  defect. That person will conduct a failure analysis to identify the cause of  the problem, propose and implement a solution. </p>
+    <p>The solution should be verified  to ensure the problem is solved.</p>
+    <p>The supplier shall establish,  document, implement and maintain a procedure to evaluate if nonconformities are  based on human factors and if additional nonconforming parts exist. </p>
+    <p>Suppliers must  provide a Corrective Action response within 30 calendar days. If a response is  not received, a reminder call, email, or letter will be sent. If a Corrective  Action is not responded to within 60 days of receipt, SNB reserves the right to  terminate for cause any open purchase orders with the supplier. Unusual  circumstances that require additional time to resolve should be arranged in  advance by the supplier through SNB&rsquo;s Quality department.</p>
+    <p class="center"><strong><u>SUPPLIER FLOW DOWN</u></strong></p>
+    <p>All supplier requirements mandated by SNB must be flowed down to sub-tier  suppliers. </p>
+    <p>&nbsp;</p>
+    <p class="center"><strong><u>SUPPLIER RECORDS</u></strong></p>
+    <p><strong>Records Control</strong></p>
+    <p>The supplier/vendor shall  maintain a documented procedure, maintaining and controlling Quality records in  accordance with acceptable quality system standards. Upon request,  supplier/vendor shall be capable of retrieving and delivering required records  to SNB within 48 hours from time of request.</p>
+    <p><strong>Records Retention</strong></p>
+    <p>Unless otherwise approved by ServiceNearBy in writing, supplier/vendor shall maintain all records that  provide objective evidence of compliance to SNB PO/RO requirements for a  minimum of 2 years after the last delivery of products and/or services listed  on PO or RO received by ServiceNearBy. Prior to discarding,  transferring to another organization, or destruction of such records, the  supplier/vendor shall notify the SNB quality in writing and give SNB the  opportunity to gain possession of the records. These requirements are  applicable to records generated by supplier/vendor&rsquo;s sub-tier sources.</p>
+    <p><br>
+    </p></td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+    <br/>
+    <form action="/myprofile/createVendorAccount" method="get" accept-charset="utf-8" class="form" role="form">
+      <button type="submit">Accept</button>
+    </form>
+
+  </p>
+  </div>
+</div>
+
