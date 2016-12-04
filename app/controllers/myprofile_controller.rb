@@ -2,7 +2,9 @@ class MyprofileController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-
+    @user = ServiceUser.find_by_user_email(current_user.email)
+    session[:logged_user]  = ServiceUser.find_by_user_email(current_user.email)
+    session[:loggedUserAddress] = @user.service_address
   end
 
   def service_user_params
@@ -20,9 +22,38 @@ class MyprofileController < ApplicationController
   end
 
   def edit
-
+    id = params[:id]
+    puts "inside edit"
+    puts id
+    session[:userid] = params[:id]
   end
 
+  def update
+    @user = ServiceUser.find_by_user_email(current_user.email)
+    puts @user.user_email
+    puts @user.user_firstname
+    user = Hash.new
+    user["user_firstname"] = params["user_firstname"]
+    user["user_lastname"] = params["user_lastname"]
+    user["user_phone"] = params["user_phone"]
+    puts user
+    address = Hash.new
+    address["address_line1"] = params["addressline1"]
+    address["address_line2"] = params["addressline2"]
+    address["address_zip"] = params["zip"]
+    address["address_state"] = "IA"
+    address["address_city"] = params["city"]
+    address["address_country"] = params["country"]
+    address["address_lattitute"] = -91.6109434
+    address["address_longitude"] = 41.6297493
+    puts address
+    @user.update_attributes!(user)
+    @user.service_address.update_attributes!(address)
+    redirect_to welcome_index_path
+    #@movie.update_attributes!(movie_params)
+    #flash[:notice] = "#{@movie.title} was successfully updated."
+    #redirect_to movie_path(@movie)
+  end
 
   def create
 
