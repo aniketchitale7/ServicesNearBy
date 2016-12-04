@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'myprofile/requestvendoraccount' , :to => 'myprofile#requestvendoraccount', :as => 'requestvendoraccount'
   get 'myprofile/createVendorAccount'
   resources :myprofile
+  resources :businessprofile
   #post 'myprofile/create'
 
   #get 'myprofile/edit'
