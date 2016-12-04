@@ -19,8 +19,8 @@
     <br/>
     <br/>
     <br/>
+    <%if (!@accountRequested)%>
     <p>
-    <%=@message%>
 <div class="scrollableDiv">
     <table><tbody>
     <p align="center" class="submenu"><strong><u>SUPPLIER /  VENDOR TERMS AND CONDITIONS<br/>ACCEPTANCE</u></strong></p>
@@ -86,7 +86,9 @@
     <form action="/myprofile/createVendorAccount" method="get" accept-charset="utf-8" class="form" role="form">
       <button type="submit">Accept</button>
     </form>
-
+    <%else%>
+    <p>Request Pending</p>
+    <%end%>
   </p>
   </div>
 </div>

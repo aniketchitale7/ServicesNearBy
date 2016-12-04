@@ -53,10 +53,10 @@ class MyprofileController < ApplicationController
   end
 
   def requestvendoraccount
-    if session[:logged_user] != nil and session[:roleid] == 2
+    if session[:logged_user] != nil and session[:roleid] == 3 and session[:logged_user]["user_status"] = "Pending"
       @accountRequested = true
     else
-       @accountRequested = false;
+      @accountRequested = false;
     end
   end
 
