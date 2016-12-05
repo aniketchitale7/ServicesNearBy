@@ -19,8 +19,11 @@ class BusinessprofileController < ApplicationController
       @hashValue["service_time"] = item.service_time
       @hashValue["service_price"] = item.service_price
       @hashValue["service_description"] = item.service_description
-      @hashValue["combinedAddress"] = @vendorAddress.address_line1 + "," +  @vendorAddress.address_line2 + "," +
-          @vendorAddress.address_city + "," + @vendorAddress.address_state + "," + @vendorAddress.address_country
+      validAddress = @vendorAddress["address"]
+      if(@vendorAddress["landmark"] != nil)
+        validAddress = validAddress + ", " + @vendorAddress["landmark"]
+      end
+      @hashValue["combinedAddress"] = validAddress
 
       @finalResult.append(@hashValue)
     end
@@ -37,21 +40,21 @@ class BusinessprofileController < ApplicationController
   def update
     @service = ServiceService.find_by_id(params["id"])
     @hashValue= Hash.new
-    @addressHash = Hash.new
+    address = Hash.new
     @hashValue["service_name"] = params["service_name"]
     @hashValue["phoneNo"] = params["phoneNo"]
     @hashValue["service_time"] = params["service_time"]
     @hashValue["service_price"] = params["service_price"]
     @hashValue["service_description"] = params["service_description"]
 
-    @addressHash["address_line1"] = params["address_line1"]
-    @addressHash["address_line2"] = params["address_line2"]
-    @addressHash["address_zip"] = params["address_zip"]
-    @addressHash["address_city"] = params["address_city"]
-    @addressHash["address_country"] = params["address_country"]
+    address["address"] = params["address"]
+    address["landmark"] = params["landmark"]
+    address["address_lattitute"] = params["longitude"]
+    address["address_longitude"] = params["longitude"]
+
 
     @service.update_attributes!(@hashValue)
-    @service.service_address.update_attributes!(@addressHash)
+    @service.service_address.update_attributes!(address)
     redirect_to businessprofile_index_path
 
 
@@ -73,14 +76,12 @@ class BusinessprofileController < ApplicationController
   def create
 
     @hashValue= Hash.new
-    @addressHash = Hash.new
-    @addressHash["address_line1"] = params["address_line1"]
-    @addressHash["address_line2"] = params["address_line2"]
-    @addressHash["address_zip"] = params["address_zip"]
-    @addressHash["address_city"] = params["address_city"]
-    @addressHash["address_country"] = params["address_country"]
-    @addressHash["address_state"] = params["address_state"]
-    @add = ServiceAddress.createAddress(@addressHash)
+    address = Hash.new
+    address["address"] = params["address"]
+    address["landmark"] = params["landmark"]
+    address["address_lattitute"] = params["longitude"]
+    address["address_longitude"] = params["longitude"]
+    @add = ServiceAddress.createAddress(address)
 
     @hashValue["service_name"] = params["service_name"]
     @hashValue["phoneNo"] = params["phoneNo"]
