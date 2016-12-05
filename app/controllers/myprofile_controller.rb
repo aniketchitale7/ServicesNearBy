@@ -91,11 +91,21 @@ class MyprofileController < ApplicationController
     end
   end
 
+
+  def servicerequests
+    if session[:logged_user] != nil
+      @loggedUser = session[:logged_user]
+      @servicefixtures = ServiceFixture.joins(:service_service).where(service_services: {service_user_id: @loggedUser["id"]}, service_fixtures:{ completed: 'Pending'})
+      #@servicefixtures = ServiceFixture.all()
+      puts(@servicefixtures)
+    end
+  end
+
   def userservices
     puts "inside user services page"
     if session[:logged_user] != nil
       @loggedUser = session[:logged_user]
-      @servicefixtures =  ServiceFixture.all#find_by_service_user_id(@loggedUser["id"])
+      @servicefixtures =  ServiceFixture.where(service_fixtures:{service_user_id: @loggedUser["id"], completed: 'Done'})
       puts @servicefixtures
       puts @loggedUser["id"]
     end
@@ -109,5 +119,21 @@ class MyprofileController < ApplicationController
     redirect_to welcome_index_path
   end
 
+  def acceptRequest
+    puts "accpeted"
+    @fixture_id = params[:id]
+    @serviceFixture = ServiceFixture.find(@fixture_id)
+    my_hash = {'completed' => "Done"}
+    @serviceFixture.update_attributes!(my_hash)
+    redirect_to servicerequestsvendor_path
+  end
 
+  def rejectRequest
+    puts "rejected"
+    @fixture_id = params[:id]
+    @serviceFixture = ServiceFixture.find(@fixture_id)
+    my_hash = {'completed' => "Rejected"}
+    @serviceFixture.update_attributes!(my_hash)
+    redirect_to servicerequestsvendor_path
+  end
 end

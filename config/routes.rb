@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   post 'application/search'
   post 'welcome/search'
   get 'myprofile/requestvendoraccount' , :to => 'myprofile#requestvendoraccount', :as => 'requestvendoraccount'
+
+
+  get 'myprofile/servicerequests' , :to => 'myprofile#servicerequests', :as => 'servicerequestsvendor'
+
   get 'myprofile/userservices' , :to => 'myprofile#userservices', :as => 'userservices'
   get 'myprofile/createVendorAccount'
   resources :myprofile
@@ -24,6 +28,11 @@ Rails.application.routes.draw do
   get '/admin/deactivate/:id', :to => 'admin#deactivate', :as => 'admindeactivate'
   get '/admin/deactivatecategory/:id', :to => 'admin#deactivatecategory', :as => 'admindeactivatecategory'
   get '/admin/activatecategory/:id', :to => 'admin#activatecategory', :as => 'adminactivatecategory'
+  post '/welcome/requestservice/:id', :to => 'welcome#requestservice', :as => 'welcomerequestservice'
+
+  post 'myprofile/acceptRequest/:id' , :to => 'myprofile#acceptRequest', :as => 'acceptRequestVendor'
+  post 'myprofile/rejectRequest/:id' , :to => 'myprofile#rejectRequest', :as => 'rejectRequestVendor'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
