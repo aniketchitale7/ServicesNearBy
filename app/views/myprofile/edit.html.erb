@@ -10,7 +10,8 @@
           <input name="_method" type="hidden" value="patch" />
           <div class="row uniform">
             <% @loginUser = session[:logged_user]
-               @address = session[:loggedUserAddress]%>
+               @user = ServiceUser.find_by_user_email(current_user.email)
+               @address = @user.service_address%>
                 <div class="field">
                   <input type="text" name="user_firstname" value= "<%=@loginUser["user_firstname"]%>" class="form-control input-lg" placeholder="First Name"  />
                 </div>

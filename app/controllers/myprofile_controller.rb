@@ -2,9 +2,9 @@ class MyprofileController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @user = ServiceUser.find_by_user_email(current_user.email)
+    #@user = ServiceUser.find_by_user_email(current_user.email)
     session[:logged_user]  = ServiceUser.find_by_user_email(current_user.email)
-    session[:loggedUserAddress] = @user.service_address
+    #session[:loggedUserAddress] = @user.service_address
   end
 
   def service_user_params
@@ -88,6 +88,16 @@ class MyprofileController < ApplicationController
       @accountRequested = true
     else
       @accountRequested = false;
+    end
+  end
+
+  def userservices
+    puts "inside user services page"
+    if session[:logged_user] != nil
+      @loggedUser = session[:logged_user]
+      @servicefixtures =  ServiceFixture.find_by_service_user_id(@loggedUser["id"])
+      puts @servicefixtures
+
     end
   end
 
