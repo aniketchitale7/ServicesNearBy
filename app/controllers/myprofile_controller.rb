@@ -23,8 +23,6 @@ class MyprofileController < ApplicationController
 
   def edit
     id = params[:id]
-    puts "inside edit"
-    puts id
     session[:userid] = params[:id]
   end
 
@@ -38,39 +36,27 @@ class MyprofileController < ApplicationController
     user["user_phone"] = params["user_phone"]
     puts user
     address = Hash.new
-    address["address_line1"] = params["addressline1"]
-    address["address_line2"] = params["addressline2"]
-    address["address_zip"] = params["zip"]
-    address["address_state"] = "IA"
-    address["address_city"] = params["city"]
-    address["address_country"] = params["country"]
+    address["address"] = params["address"]
+    address["landmark"] = params["landmark"]
     address["address_lattitute"] = -91.6109434
     address["address_longitude"] = 41.6297493
-    puts address
     @user.update_attributes!(user)
     @user.service_address.update_attributes!(address)
     redirect_to welcome_index_path
-    #@movie.update_attributes!(movie_params)
-    #flash[:notice] = "#{@movie.title} was successfully updated."
-    #redirect_to movie_path(@movie)
   end
 
   def create
 
     address = Hash.new
 
-    address["address_line1"] = params["addressline1"]
-    address["address_line2"] = params["addressline2"]
-    address["address_zip"] = params["zip"]
-    address["address_state"] = "IA"
-    address["address_city"] = params["city"]
-    address["address_country"] = params["country"]
+    address["address"] = params["address"]
+    address["landmark"] = params["landmark"]
     address["address_lattitute"] = -91.6109434
     address["address_longitude"] = 41.6297493
 
     @add = ServiceAddress.createAddress(address)
     print(@add.id)
-    @roleid = ServiceRole.find_by_role_name("Admin")
+    @roleid = ServiceRole.find_by_role_name("User")
 
     @user = @add.service_users.create(:user_firstname => params["user_firstname"],
                                       :user_lastname => params["user_lastname"],
@@ -78,13 +64,15 @@ class MyprofileController < ApplicationController
                                       :user_email => current_user.email, :user_status => 'Active' ,
                                       :service_role_id => @roleid.id
     )
+    session[:logged_user] = @user
 
     redirect_to welcome_index_path
 
   end
 
   def requestvendoraccount
-    if session[:logged_user] != nil and session[:roleid] == 3 and session[:logged_user]["user_status"] = "Pending"
+
+    if session[:logged_user] != nil and session[:roleid] == 3 and session[:logged_user]["user_status"] == "Pending"
       @accountRequested = true
     else
       @accountRequested = false;
@@ -115,7 +103,7 @@ class MyprofileController < ApplicationController
       @loggedUser = session[:logged_user]
       @user =  ServiceUser.find(@loggedUser["id"])
       ServiceUser.update(@user.id , :user_status => "Pending")
-      print("User Updated")
+      session[:logged_user] = @user
     redirect_to welcome_index_path
   end
 

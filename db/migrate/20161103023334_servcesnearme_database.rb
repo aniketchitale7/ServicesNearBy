@@ -14,12 +14,8 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
 
 
     create_table :service_addresses do |t|
-      t.string 'address_line1', null: false
-      t.string 'address_line2'
-      t.integer 'address_zip'
-      t.string 'address_city'
-      t.string 'address_state'
-      t.string 'address_country'
+      t.string 'address', null: false
+      t.string 'landmark'
       t.decimal 'address_lattitute'
       t.decimal 'address_longitude'
     end

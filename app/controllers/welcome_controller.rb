@@ -21,8 +21,11 @@ class WelcomeController < ApplicationController
       @hashValue["Vendor_PhoneNo"] = item.phoneNo
       @hashValue["Service_Name"] = item.service_name
       @hashValue["time"] = item.service_time
-      @hashValue["address"] = @vendorAddress.address_line1 + "," +  @vendorAddress.address_line2 + "," +
-          @vendorAddress.address_city + "," + @vendorAddress.address_state + "," + @vendorAddress.address_country
+      validAddress = @vendorAddress["address"]
+      if(@vendorAddress["landmark"] != nil)
+        validAddress = validAddress + @vendorAddress["landmark"]
+      end
+      @hashValue["address"] = validAddress
       @hashValue["Reviews"] = @serviceFeedback
       @finalResult.append(@hashValue)
     end

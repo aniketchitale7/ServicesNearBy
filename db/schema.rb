@@ -13,12 +13,8 @@
 ActiveRecord::Schema.define(version: 20161106054018) do
 
   create_table "service_addresses", force: :cascade do |t|
-    t.string  "address_line1",     null: false
-    t.string  "address_line2"
-    t.integer "address_zip"
-    t.string  "address_city"
-    t.string  "address_state"
-    t.string  "address_country"
+    t.string  "address",           null: false
+    t.string  "landmark"
     t.decimal "address_lattitute"
     t.decimal "address_longitude"
   end
