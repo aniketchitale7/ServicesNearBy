@@ -25,6 +25,6 @@ class WelcomeController < ApplicationController
       @finalResult.append(@hashValue)
     end
     print(@finalResult.to_s)
-    redirect_to search_index_path
+    # redirect_to search_index_path
   end
 end

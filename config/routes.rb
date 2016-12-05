@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
-  get 'myprofile/myprofile'
+  #get 'myprofile/myprofile'
   root 'welcome#index'
   post 'application/search'
   post 'welcome/search'
-
-  post 'myprofile/create'
+  get 'myprofile/requestvendoraccount' , :to => 'myprofile#requestvendoraccount', :as => 'requestvendoraccount'
+  get 'myprofile/createVendorAccount'
+  resources :myprofile
+  resources :businessprofile
+  get 'myprofile/update'
+  #post 'myprofile/create'
+  #get 'myprofile/edit'
   get 'admin/index'
   get 'search/index'
 
