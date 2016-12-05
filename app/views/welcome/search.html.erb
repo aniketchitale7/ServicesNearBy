@@ -1,5 +1,32 @@
  <!-- Main -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style>
+   .center {
+     margin-top:50px;
+   }
+
+   .modal-header {
+     padding-bottom: 5px;
+   }
+
+   .modal-footer {
+     padding: 0;
+   }
+
+   .modal-footer .btn-group button {
+     height:40px;
+     border-top-left-radius : 0;
+     border-top-right-radius : 0;
+     border: none;
+     border-right: 1px solid #ddd;
+   }
+
+   .modal-footer .btn-group:last-child > button {
+     border-right: 0;
+   }
+ </style>
 <script>
   $(document).ready(function(){
     $(".categories").click(function(){
@@ -10,6 +37,120 @@
     });
     $(".location").click(function(){
       $("#locationShow").slideToggle("slow");
+    });
+  });
+
+  // Starrr plugin (https://github.com/dobtco/starrr)
+  var __slice = [].slice;
+
+  (function($, window) {
+    var Starrr;
+
+    Starrr = (function() {
+      Starrr.prototype.defaults = {
+        rating: void 0,
+        numStars: 5,
+        change: function(e, value) {}
+      };
+
+      function Starrr($el, options) {
+        var i, _, _ref,
+            _this = this;
+
+        this.options = $.extend({}, this.defaults, options);
+        this.$el = $el;
+        _ref = this.defaults;
+        for (i in _ref) {
+          _ = _ref[i];
+          if (this.$el.data(i) != null) {
+            this.options[i] = this.$el.data(i);
+          }
+        }
+        this.createStars();
+        this.syncRating();
+
+        this.$el.on('mouseout.starrr', function() {
+          return _this.syncRating();
+        });
+        this.$el.on('click.starrr', 'span', function(e) {
+          return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+        });
+        this.$el.on('starrr:change', this.options.change);
+      }
+
+      Starrr.prototype.createStars = function() {
+        var _i, _ref, _results;
+
+        _results = [];
+        for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+          _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
+        }
+        return _results;
+      };
+
+      Starrr.prototype.setRating = function(rating) {
+        if (this.options.rating === rating) {
+          rating = void 0;
+        }
+        this.options.rating = rating;
+        this.syncRating();
+        return this.$el.trigger('starrr:change', rating);
+      };
+
+      Starrr.prototype.syncRating = function(rating) {
+        var i, _i, _j, _ref;
+
+        rating || (rating = this.options.rating);
+        if (rating) {
+          for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+            this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+          }
+        }
+        if (rating && rating < 5) {
+          for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+            this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+          }
+        }
+        if (!rating) {
+          return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+        }
+      };
+
+      return Starrr;
+
+    })();
+    return $.fn.extend({
+      starrr: function() {
+        var args, option;
+
+        option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+        return this.each(function() {
+          var data;
+
+          data = $(this).data('star-rating');
+          if (!data) {
+            $(this).data('star-rating', (data = new Starrr($(this), option)));
+          }
+          if (typeof option === 'string') {
+            return data[option].apply(data, args);
+          }
+        });
+      }
+    });
+  })(window.jQuery, window);
+
+  $(function() {
+    return $(".starrr").starrr();
+  });
+
+  $( document ).ready(function() {
+
+    $('#stars').on('starrr:change', function(e, value){
+      $('#count').html(value);
+    });
+
+    $('#stars-existing').on('starrr:change', function(e, value){
+      $('#count-existing').html(value);
     });
   });
 </script>
@@ -81,7 +222,6 @@
     <br/>
     <br/>
     <div class = "default">
-      <a href = "">
         <% @finalResult.each do |users| %>
             <p>
         <span class="image left">
@@ -91,11 +231,66 @@
               <b>Rating: </b>9.8/10<br/>
               <b>Address: </b><%= users["address"] %><br/>
               <b>Phone Number: </b><%= users["Vendor_PhoneNo"] %><br/>
-              <b>Time : </b><%= users["time"] %><br/><br/>
+              <b>Time : </b><%= users["time"] %>
+              <table>
+                <tr>
+                  <td>
+                    <%= button_to "Request"%>
+                  </td>
+                  <td>
+                    <button data-toggle="modal" data-target="#squarespaceModal-<%= users["id"] %>" style="height: 40px;" >Reviews</button>
+
+                  </td>
+                </tr>
+              </table>
+
+
+          <!-- line modal -->
+          <div class="modal fade" id="squarespaceModal-<%= users["id"] %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  <h3 class="modal-title" id="lineModalLabel">Reviews</h3>
+                </div>
+                <div class="modal-body">
+
+                  <!-- content goes here -->
+                  <table>
+                    <% users["Reviews"].each do |reviews| %>
+                        <tr>
+                          <td>
+                            <div id="stars-existing" class="starrr" data-rating='<%= reviews["review_rating"] %>'></div>
+                          </td>
+                          <td>
+                            <%= reviews["review_info"] %>
+                          </td>
+                        </tr>
+                    <%end%>
+                  </table>
+
+
+                </div>
+                <div class="modal-footer">
+                  <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+                    </div>
+                    <div class="btn-group btn-delete hidden" role="group">
+                      <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
               <br/>
-            </p>
+
+
+
+            </p>g
+
         <%end %>
-      </a>
     </div>
     <div class = "lexico" hidden>
       <%
