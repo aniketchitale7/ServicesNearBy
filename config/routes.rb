@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   #get 'myprofile/edit'
   get 'admin/index'
   get 'search/index'
-  get 'welcome/userservices'
+  get 'search/feedback/:id', :to => 'search#feedback', :as => 'searchindex'
 
   resources :admin
 

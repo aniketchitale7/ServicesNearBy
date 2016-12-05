@@ -1,0 +1,39 @@
+<body>
+<div id = "wrapper">
+  <div id="main">
+    <div class="inner">
+      <br/>
+      <br/>
+      <br/>
+      <form action="create" method="post" accept-charset="utf-8" class="form" role="form">   <h2>Feedback</h2>
+        <section>
+
+          <div class="row uniform">
+            <% @service_user = ServiceUser.find_by_user_email(current_user.email)%>
+
+                <div class="field">
+                  <input type="text" name="user_firstname" value= "<%=@service_user["user_firstname"]%>" class="form-control input-lg" placeholder="First Name"  />
+                </div>
+                <div class="field">
+                  <input type="text" name="user_lastname" value= "<%=@service_user["user_lastname"]%>" class="form-control input-lg" placeholder="Last Name"  />
+                </div>
+                <div class="field">
+                  Email:  </b><%= current_user.email%>
+                </div>
+                <div class="field">
+                  <textarea name="user_comments" class="form-control input-lg" placeholder="Comments"  />Any Suggestions or comments you would like to make:</textarea>
+                </div>
+                <div class="field">
+                  Rating :<input type="number" name="rating" min="1" max="10" placeholder="Rating"  />
+                </div>
+                <div class="actions">
+                  <button type="submit">Submit</button>
+                </div>
+
+          </div>
+        </section>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
