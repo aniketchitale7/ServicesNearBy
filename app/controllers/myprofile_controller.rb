@@ -105,9 +105,9 @@ class MyprofileController < ApplicationController
     puts "inside user services page"
     if session[:logged_user] != nil
       @loggedUser = session[:logged_user]
-      @servicefixtures =  ServiceFixture.find_by_service_user_id(@loggedUser["id"])
+      @servicefixtures =  ServiceFixture.all#find_by_service_user_id(@loggedUser["id"])
       puts @servicefixtures
-
+      puts @loggedUser["id"]
     end
   end
 
