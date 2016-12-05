@@ -1,41 +1,102 @@
-
 class MyprofileController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+  def index
+    @user = ServiceUser.find_by_user_email(current_user.email)
+    session[:logged_user]  = ServiceUser.find_by_user_email(current_user.email)
+    session[:loggedUserAddress] = @user.service_address
+  end
+
   def service_user_params
-
-
-      params.require(:user_firstname)
+    params.require(:user_firstname)
   end
+
+
   def new
-    puts "testing"
+
   end
 
+  def show
+
+
+  end
+
+  def edit
+    id = params[:id]
+    puts "inside edit"
+    puts id
+    session[:userid] = params[:id]
+  end
+
+  def update
+    @user = ServiceUser.find_by_user_email(current_user.email)
+    puts @user.user_email
+    puts @user.user_firstname
+    user = Hash.new
+    user["user_firstname"] = params["user_firstname"]
+    user["user_lastname"] = params["user_lastname"]
+    user["user_phone"] = params["user_phone"]
+    puts user
+    address = Hash.new
+    address["address_line1"] = params["addressline1"]
+    address["address_line2"] = params["addressline2"]
+    address["address_zip"] = params["zip"]
+    address["address_state"] = "IA"
+    address["address_city"] = params["city"]
+    address["address_country"] = params["country"]
+    address["address_lattitute"] = -91.6109434
+    address["address_longitude"] = 41.6297493
+    puts address
+    @user.update_attributes!(user)
+    @user.service_address.update_attributes!(address)
+    redirect_to welcome_index_path
+    #@movie.update_attributes!(movie_params)
+    #flash[:notice] = "#{@movie.title} was successfully updated."
+    #redirect_to movie_path(@movie)
+  end
 
   def create
 
-    @user_service = Service_User.new
-    my_hash = {'user_firstname' => params.require(:user_firstname),
-               'user_lastname' => params.require(:user_lastname),
-               'user_phone' => params.require(:user_phone),
-               'service_roles_id' => params.require(:service_roles_id),
-               'user_email' => "DUMMY",
-               'user_password' => "DUMMY",
-               'user_name' => "testing",
-               'created_at' => "DUMMY",
-               'updated_at' => "DUMMY"}
-    puts my_hash
-    # @user_service.user_firstname = params.require(:user_firstname)
-    # @user_service.user_lastname = params.require(:user_lastname)
-    # @user_service.user_phone =params.require(:user_phone)
-    # @user_service.service_roles_id = params.require(:service_roles_id)
-    # @user_service.user_email = "dummy"
-    # @user_service.user_name = "dummy"
-    # @user_service.user_password = "dummy"
-    # @user_service.created_at = "25-Nov-1992"
-    # @user_service.updated_at = "25-Nov-1992"
-    @user_new = Service_User.create_service_user(my_hash)
-    # @user_new = Service_User.create(my_hash)
+    address = Hash.new
+
+    address["address_line1"] = params["addressline1"]
+    address["address_line2"] = params["addressline2"]
+    address["address_zip"] = params["zip"]
+    address["address_state"] = "IA"
+    address["address_city"] = params["city"]
+    address["address_country"] = params["country"]
+    address["address_lattitute"] = -91.6109434
+    address["address_longitude"] = 41.6297493
+
+    @add = ServiceAddress.createAddress(address)
+    print(@add.id)
+    @roleid = ServiceRole.find_by_role_name("Admin")
+
+    @user = @add.service_users.create(:user_firstname => params["user_firstname"],
+                                      :user_lastname => params["user_lastname"],
+                                      :user_phone => params["user_phone"],
+                                      :user_email => current_user.email, :user_status => 'Active' ,
+                                      :service_role_id => @roleid.id
+    )
+
+    redirect_to welcome_index_path
+
+  end
+
+  def requestvendoraccount
+    if session[:logged_user] != nil and session[:roleid] == 3 and session[:logged_user]["user_status"] = "Pending"
+      @accountRequested = true
+    else
+      @accountRequested = false;
+    end
+  end
+
+  def createVendorAccount
+      @loggedUser = session[:logged_user]
+      @user =  ServiceUser.find(@loggedUser["id"])
+      ServiceUser.update(@user.id , :user_status => "Pending")
+      print("User Updated")
+    redirect_to welcome_index_path
   end
 
 

@@ -1,0 +1,60 @@
+<body>
+<div id = "wrapper">
+  <div id="main">
+    <div class="inner">
+      <br/>
+      <br/>
+      <br/>
+<%= form_tag businessprofile_index_path , :method => :post do %>   <h2>Edit Business Page</h2>
+    <section>
+      <div class="row uniform">
+        <div class="field">
+          Shop Name: <input type="text" name="service_name"  class="form-control input-lg" placeholder="Shop Name"  />
+        </div>
+        <div class="field">
+          Category <%= select_tag 'category', options_for_select(@category.map{|team| ["#{team.service_name}" , team.id] }) %>
+        </div>
+
+        <div class="field">
+          Phone Number: <input type="text" name="phoneNo"  class="form-control input-lg" placeholder="Contact Number"  />
+        </div>
+        <div class="field">
+          Time: <input type="text" name="service_time"  class="form-control input-lg" placeholder="Time"  />
+        </div>
+        <div class="field">
+          Price:<input type="text" name="service_price"  class="form-control input-lg" placeholder="Price per hour"  />
+        </div>
+        <div class="field">
+          Description: <input type="text" name="service_description" class="form-control input-lg" placeholder="Short Description of Service"  />
+        </div>
+        <div class="field">
+          Address Line 1: <input type="text" name="address_line1" class="form-control input-lg" placeholder=""  />
+        </div>
+        <div class="field">
+          Address Line 2:: <input type="text" name="address_line2" class="form-control input-lg" placeholder=""  />
+        </div>
+        <div class="field">
+          Zip Code: <input type="text" name="address_zip"  class="form-control input-lg" placeholder=""  />
+        </div>
+        <div class="field">
+          City: <input type="text" name="address_city"  class="form-control input-lg" placeholder=""  />
+        </div>
+        <div class="field">
+          State: <input type="text" name="address_state"  class="form-control input-lg" placeholder="state"  />
+        </div>
+        <div class="field">
+          Country: <input type="text" name="address_country" class="form-control input-lg" placeholder=""  />
+        </div>
+
+        <br />
+        <div class="actions">
+          <button type="submit">Create</button>
+        </div>
+      </div>
+      </section>
+      <%end%>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
