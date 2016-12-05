@@ -1,9 +1,31 @@
 <!-- Main -->
 <div id="main">
   <div class="inner">
+    <div class="container">
+      <div class="row">
+        <div class="search">
+
+        </div>
+      </div>
+    </div>
+    <section>
+      <%= form_tag :action => 'search' do %>
+        <div class="row uniform">
+          <div class="6u 12u$(xsmall)">
+            <%= text_field_tag 'search_box',nil, placeholder: "Enter Search Items" %>
+          </div>
+          <div class="6u$ 12u$(xsmall)">
+            <%= submit_tag 'Search'%>
+          </div>
+        </div>
+      <% end %>
+    </section>
+
+
     <header>
       <h1>This is ServicesNearBy, a place where you<br />
-        can find services near you.<a href="http://html5up.net">....</a>.</h1>
+        can find services near you......</h1>
+
     </header>
     <section class="tiles">
       <article class="style1">
