@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20161106054018) do
     t.string "service_status",      null: false
   end
 
-  create_table "service_completed", force: :cascade do |t|
+  create_table "service_fixtures", force: :cascade do |t|
     t.integer "service_user_id",    null: false
     t.integer "service_service_id", null: false
     t.string  "completed"
-    t.index ["service_service_id"], name: "index_service_completed_on_service_service_id"
-    t.index ["service_user_id"], name: "index_service_completed_on_service_user_id"
+    t.index ["service_service_id"], name: "index_service_fixtures_on_service_service_id"
+    t.index ["service_user_id"], name: "index_service_fixtures_on_service_user_id"
   end
 
   create_table "service_privileges", force: :cascade do |t|
