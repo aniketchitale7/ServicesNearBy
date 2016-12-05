@@ -1,0 +1,31 @@
+<!-- Main -->
+<body>
+<table>
+  <tr>
+    <th> Request ID</th>
+    <th>Service ID</th>
+    <th>User ID</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @servicefixtures.each do |servicefixture| %>
+      <tr>
+        <td>
+          <%= servicefixture.id  %>
+        </td>
+        <td>
+          <%= servicefixture.service_service_id  %>
+        </td>
+        <td>
+          <%= servicefixture.service_user_id  %>
+        </td>
+        <td>
+          <%= button_to "Accept",acceptRequestVendor_path(servicefixture["id"])%>
+        </td>
+        <td>
+          <%= button_to "Reject",rejectRequestVendor_path(servicefixture["id"])%>
+        </td>
+      </tr>
+  <%end%>
+</table>
+</body>

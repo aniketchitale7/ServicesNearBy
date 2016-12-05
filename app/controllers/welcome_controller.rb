@@ -29,4 +29,22 @@ class WelcomeController < ApplicationController
     print(@finalResult.to_s)
     # redirect_to search_index_path
   end
+
+  def requestservice
+    @id = params[:id] # retrieve movie ID from URI route
+    @service_user = session[:logged_user]
+
+    puts @id
+    if @service_user == nil
+      flash.now[:alert] = 'Please Sign in'
+      puts "habjh"
+    else
+      puts "here"
+      @hashValue= Hash.new
+      @hashValue["service_user_id"] = @service_user["id"]
+      @hashValue["service_service_id"] = @id
+      @hashValue["completed"] = "Pending"
+      @servicefixture =  ServiceFixture.create!(@hashValue)
+    end
+  end
 end

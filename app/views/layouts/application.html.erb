@@ -170,6 +170,7 @@ ul.topnav li.icon {display: none;}
                 <%end%>
             <% if @serviceuser != nil and session[:roleid] == 2 %>
                 <li><%= link_to "My Business Pages", businessprofile_index_path %></li>
+                <li><%= link_to "Requests", servicerequestsvendor_path %></li>
             <% end %>
             <% if session[:logged_user] != nil and session[:roleid] == 3 %>
                 <li><%= link_to "Request Vendor Profile", requestvendoraccount_path %></li>
