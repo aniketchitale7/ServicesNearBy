@@ -19,14 +19,14 @@
   function getLatLong()
   {
     var add = document.getElementById('autocomplete').value;
-    alert(add);
     var geo = new google.maps.Geocoder;
     geo.geocode({'address':add},function(results, status){
       if (status == google.maps.GeocoderStatus.OK) {
-        var myLat = results[0].geometry.location;
-        var myLng = results[0].geometry.longitude;
-        alert(myLat +" : "+ myLng);
-        // Add some code to work with myLatLng
+        var myLatLng = results[0].geometry.location;
+        var myLat = results[0].geometry.location.lat();
+        var myLng = results[0].geometry.location.lng();
+        document.getElementById('latitude').value = myLat;
+        document.getElementById('longitude').value = myLng;
 
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -132,10 +132,10 @@
               Landmark: <input type="text" name="landmark"  value = "<%=@address["landmark"]%>" class="form-control input-lg" placeholder="eg: Near Maclean or Apt B etc"  />
             </div>
             <div id="locationField">
-              <input type="hidden" name="latitude"  class="form-control input-lg" placeholder="" />
+              <input type="hidden" name="latitude" id="latitude" class="form-control input-lg" placeholder="" />
             </div>
             <div id="locationField">
-              <input type="hidden" name="longitude"  class="form-control input-lg" placeholder="" />
+              <input type="hidden" name="longitude" id="longitude" class="form-control input-lg" placeholder="" />
             </div>
 
             <br />

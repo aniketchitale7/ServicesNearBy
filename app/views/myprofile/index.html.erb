@@ -19,13 +19,15 @@
   function getLatLong()
   {
     var add = document.getElementById('autocomplete').value;
-    alert(add);
     var geo = new google.maps.Geocoder;
     geo.geocode({'address':add},function(results, status){
       if (status == google.maps.GeocoderStatus.OK) {
-        var myLat = results[0].geometry.location;
-        var myLng = results[0].geometry.longitude;
-        alert(myLat +" : "+ myLng);
+        var myLatLng = results[0].geometry.location;
+        var myLat = results[0].geometry.location.lat();
+        var myLng = results[0].geometry.location.lng();
+        document.getElementById('latitude').value = myLat;
+        document.getElementById('longitude').value = myLng;
+
         // Add some code to work with myLatLng
 
       } else {
@@ -132,7 +134,7 @@
                   <input type="text" name="user_phone"  value= "<%=@loginUser["user_phone"]%>" class="form-control input-lg" placeholder="Contact Number"  disabled />
                 </div>
                 <div class="field">
-                  <input type="text" name="address" value= "<%=@address["address"]%>" class="form-control input-lg" placeholder="Address Line 1"  disabled />
+                  <input type="text" name="address" value= "<%=@address["address"]%>" class="form-control input-lg" id="autocomplete" onFocus="geolocate()" onblur="getLatLong()" placeholder="Address Line 1"  />
                 </div>
                 <div class="field">
                   <input type="text" name="landmark" value= "<%=@address["landmark"]%>" class="form-control input-lg" placeholder="Address Line 2"  disabled />
@@ -164,19 +166,19 @@
 
                   <div id="locationField">
                     Address: <input id="autocomplete" placeholder="Enter your address"
-                           onFocus="geolocate()" type="text" required name="address">
+                           onFocus="geolocate()" onblur="getLatLong()" type="text" required name="address">
                   </div>
                   <div id="locationField">
                     Landmark: <input type="text" name="landmark"  class="form-control input-lg" placeholder="eg: Near Maclean or Apt B etc"  name ="landmark" />
                   </div>
                   <div id="locationField">
-                    <input type="hidden" name="latitude"  class="form-control input-lg" placeholder="" />
+                    <input type="hidden" name="latitude" id="latitude"  class="form-control input-lg" placeholder="" />
                   </div>
                   <div id="locationField">
-                    <input type="hidden" name="longitude"  class="form-control input-lg" placeholder="" />
+                    <input type="hidden" name="longitude" id="longitude"  class="form-control input-lg" placeholder="" />
                   </div>
                   <div class="actions">
-                    <button type="button" onClick="parent.location='/welcome/index'">Skip</button>&nbsp;&nbsp;<button type="submit">UDPATE</button>
+                    <button type="button" onClick="parent.location='/welcome/index'">Skip</button>&nbsp;&nbsp;<button type="submit">Create</button>
                   </div>
                 </form>
             <% end %>

@@ -38,8 +38,8 @@ class MyprofileController < ApplicationController
     address = Hash.new
     address["address"] = params["address"]
     address["landmark"] = params["landmark"]
-    address["address_lattitute"] = -91.6109434
-    address["address_longitude"] = 41.6297493
+    address["address_lattitute"] = params["latitude"]
+    address["address_longitude"] = params["longitude"]
     @user.update_attributes!(user)
     @user.service_address.update_attributes!(address)
     redirect_to welcome_index_path
@@ -51,8 +51,8 @@ class MyprofileController < ApplicationController
 
     address["address"] = params["address"]
     address["landmark"] = params["landmark"]
-    address["address_lattitute"] = -91.6109434
-    address["address_longitude"] = 41.6297493
+    address["address_lattitute"] = params["latitude"]
+    address["address_longitude"] = params["longitude"]
 
     @add = ServiceAddress.createAddress(address)
     print(@add.id)

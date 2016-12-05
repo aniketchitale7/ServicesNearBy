@@ -19,14 +19,14 @@
   function getLatLong()
   {
     var add = document.getElementById('autocomplete').value;
-    alert(add);
     var geo = new google.maps.Geocoder;
     geo.geocode({'address':add},function(results, status){
       if (status == google.maps.GeocoderStatus.OK) {
-        var myLat = results[0].geometry.location;
-        var myLng = results[0].geometry.longitude;
-        alert(myLat +" : "+ myLng);
-        // Add some code to work with myLatLng
+        var myLatLng = results[0].geometry.location;
+        var myLat = results[0].geometry.location.lat();
+        var myLng = results[0].geometry.location.lng();
+        document.getElementById('latitude').value = myLat;
+        document.getElementById('longitude').value = myLng;
 
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -127,19 +127,18 @@
                 <div class="field">
                   <input type="text" name="user_phone"  value= "<%=@loginUser["user_phone"]%>" class="form-control input-lg" placeholder="Contact Number"  />
                 </div>
-                  <div id="locationField">
-                    Address: <input id="autocomplete" placeholder="Enter your address"
-                                    onFocus="geolocate()" type="text" name="address" value = "<%=@address["address"]%>" required >
-                  </div>
-                  <div id="locationField">
-                    Landmark: <input type="text" name="landmark"  value = "<%=@address["landmark"]%>" class="form-control input-lg" placeholder="eg: Near Maclean or Apt B etc"  />
-                  </div>
-                  <div id="locationField">
-                    <input type="hidden" name="latitude"  class="form-control input-lg" placeholder="" />
-                  </div>
-                  <div id="locationField">
-                    <input type="hidden" name="longitude"  class="form-control input-lg" placeholder="" />
-                  </div>
+                <div class="field">
+                 Address: <input type="text" name="address" id="autocomplete" value= "<%=@address["address"]%>" class="form-control input-lg" placeholder="Enter your address" onfocus="geolocate()" onblur="getLatLong()" required />
+                </div>
+                <div class="field">
+                  Landmark: <input type="text" name="landmark" id="landmark" value= "<%=@address["landmark"]%>" class="form-control input-lg" placeholder="eg: Near Maclean or Apt B etc"  />
+                </div>
+                <div id="field">
+                  <input type="hidden" name="latitude" id="latitude" class="form-control input-lg" placeholder="" />
+                </div>
+                <div id="field">
+                  <input type="hidden" name="longitude" id="longitude" class="form-control input-lg" placeholder="" />
+                </div>
                 <br />
                 <div class="actions">
                   <button type="submit">UDPATE</button>

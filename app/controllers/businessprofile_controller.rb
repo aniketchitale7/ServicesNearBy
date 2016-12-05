@@ -49,8 +49,8 @@ class BusinessprofileController < ApplicationController
 
     address["address"] = params["address"]
     address["landmark"] = params["landmark"]
-    address["address_lattitute"] = -91.6109434
-    address["address_longitude"] = 41.6297493
+    address["address_lattitute"] = params["longitude"]
+    address["address_longitude"] = params["longitude"]
 
 
     @service.update_attributes!(@hashValue)
@@ -79,8 +79,8 @@ class BusinessprofileController < ApplicationController
     address = Hash.new
     address["address"] = params["address"]
     address["landmark"] = params["landmark"]
-    address["address_lattitute"] = -91.6109434
-    address["address_longitude"] = 41.6297493
+    address["address_lattitute"] = params["longitude"]
+    address["address_longitude"] = params["longitude"]
     @add = ServiceAddress.createAddress(address)
 
     @hashValue["service_name"] = params["service_name"]
