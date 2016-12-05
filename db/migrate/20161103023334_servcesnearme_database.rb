@@ -55,7 +55,7 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
       t.string 'service_description'
     end
 
-    create_table :service_fixtures do |t|
+    create_table :service_completed do |t|
       t.belongs_to :service_user, null: false
       t.belongs_to :service_service, null: false
       t.string 'completed'

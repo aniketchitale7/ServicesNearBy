@@ -10,8 +10,7 @@
 
           <div class="row uniform">
             <% @loginUser = session[:logged_user]
-              @user = ServiceUser.find_by_user_email(current_user.email)
-               @address = @user.service_address%>
+               @address = session[:loggedUserAddress]%>
             <% if @loginUser != nil %>
                 <form action= "/myprofile/<%=@loginUser['id']%>/edit" method="get" accept-charset="utf-8" class="form" role="form">   <h2>My Profile</h2>
 

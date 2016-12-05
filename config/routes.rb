@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post 'application/search'
   post 'welcome/search'
   get 'myprofile/requestvendoraccount' , :to => 'myprofile#requestvendoraccount', :as => 'requestvendoraccount'
-  get 'myprofile/userservices' , :to => 'myprofile#userservices', :as => 'userservices'
   get 'myprofile/createVendorAccount'
   resources :myprofile
   resources :businessprofile
@@ -15,7 +14,6 @@ Rails.application.routes.draw do
   #get 'myprofile/edit'
   get 'admin/index'
   get 'search/index'
-  get 'welcome/userservices'
 
   resources :admin
 

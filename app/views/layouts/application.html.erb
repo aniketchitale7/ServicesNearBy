@@ -167,16 +167,14 @@ ul.topnav li.icon {display: none;}
             <% if user_signed_in? %>
             <li><%= link_to "My Profile", myprofile_index_path %></li>
                 <% @serviceuser = session[:logged_user]%>
-                <%end%>
             <% if @serviceuser != nil and session[:roleid] == 2 %>
                 <li><%= link_to "My Business Pages", businessprofile_index_path %></li>
             <% end %>
-            <% if session[:logged_user] != nil and session[:roleid] == 3 %>
-                <li><%= link_to "Request Vendor Profile", requestvendoraccount_path %></li>
+                <% if session[:logged_user] != nil and session[:roleid] == 3 %>
+                    <li><%= link_to "Request Vendor Profile", requestvendoraccount_path %></li>
+
+                <% end %>
             <% end %>
-            <% if session[:logged_user] != nil and session[:roleid] == 3 %>
-                <li><%= link_to "View Your Services", userservices_path %></li>
-            <%end%>
 
           </ul>
         </nav>
