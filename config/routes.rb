@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   #get 'myprofile/edit'
   get 'admin/index'
   get 'search/index'
-  get 'search/feedback/:id', :to => 'search#feedback', :as => 'searchindex'
-
+  post 'search/feedback', :to => 'search#feedback', :as => 'searchfeedback'
+  #get 'search/feed', :to => 'search#index', :as => 'searchindex'
   resources :admin
-
+  get 'search/feed'
+  post 'search/create'
   get '/admin/reject/:id', :to => 'admin#reject', :as => 'adminreject'
   get '/admin/activate/:id', :to => 'admin#activate', :as => 'adminactivate'
   get '/admin/deactivate/:id', :to => 'admin#deactivate', :as => 'admindeactivate'
