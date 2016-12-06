@@ -329,7 +329,7 @@
                       <td></td>
                     </tr>
                   <% @users.each do |user| %>
-                      <% if user.service_role_id == 1 and user.user_status != "Pending" %>
+                      <% if user.service_role_id == 3 and user.user_status != "Pending" %>
                         <tr>
                           <td>
                             <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -479,7 +479,7 @@
                       <td></td>
                     </tr>
                     <% @users.each do |user| %>
-                        <% if user.service_role_id == 0 and user.user_status != "Pending" %>
+                        <% if user.service_role_id == 1 and user.user_status != "Pending" %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -637,6 +637,7 @@
                               <td>
                                 <% if category.service_status =="Active" %>
                                   <%= link_to "De-activate" , admindeactivatecategory_path(category)%>
+
                                 <%else%>
                                     <%= link_to "Activate", adminactivatecategory_path(category)%>
                                 <% end %>
@@ -662,25 +663,25 @@
                               <div class="tab-pane fade in active" id="tabavailableServices">
                                 <table>
                                   <tr>
-                                    <td><b>Name</b></td>
-                                    <td><b>Infox`</b></td>
-                                    <td></td>
+                                    <td><b>Service Id</b></td>
+                                    <td><b>Category</b></td>
+                                    <td><b>Service Name</b></td>
                                     <td></td>
                                     <td></td>
                                   </tr>
-                                  <% @users.each do |user| %>
-                                      <% if user.service_role_id == 1 and user.user_status != "Pending" %>
+                                  <% @service.each do |service| %>
+                                      <% if service.service_status == "Active" or service.service_status == "Inactive"%>
                                           <tr>
                                             <td>
-                                              <%= user.user_firstname  %> <%= user.user_lastname  %>
+                                              <%= service.id  %>
                                             </td>
                                             <td>
-                                              <%= user.user_email %>
+                                              <%= service.service_name %>
                                             </td>
                                             <td>
-                                              <button data-toggle="modal" data-target="#squarespaceModal-<%= user.id %>" style="height: auto; width: auto">Details</button>
+                                              <button data-toggle="modal" data-target="#squarespaceModals-<%= service.id %>" style="height: auto; width: auto">Details</button>
                                               <!-- line modal -->
-                                              <div class="modal fade" id="squarespaceModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                              <div class="modal fade" id="squarespaceModals-<%= service.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                   <div class="modal-content">
                                                     <div class="modal-header">
@@ -691,20 +692,16 @@
 
                                                       <div class="form-group">
                                                         <label>Name</label>
-                                                        <%= user.user_firstname  %> <%= user.user_lastname  %>
 
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Email</label>
-                                                        <%= user.user_email %>
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Status</label>
-                                                        <%= user.user_status %>
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Information</label>
-                                                        <%= user.user_info %>
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Address</label>
@@ -723,10 +720,10 @@
                                               </div>
                                             </td>
                                             <td>
-                                              <% if user.user_status == "Active" %>
-                                                  <%= link_to "De-activate", admindeactivate_path(user) %>
+                                              <% if service.service_status == "Active" %>
+                                                  <%= link_to "De-activate", admindeactivateservice_path(service) %>
                                               <% else %>
-                                                  <%= link_to "Activate", adminactivate_path(user)%>
+                                                  <%= link_to "Activate", adminactivateservice_path(service)%>
                                               <% end %>
                                             </td>
                                           </tr>
@@ -737,25 +734,26 @@
                               <div class="tab-pane fade" id="tabservicerequests">
                                 <table>
                                   <tr>
-                                    <td><b>Name</b></td>
-                                    <td><b>Email</b></td>
+                                    <td><b>Service Id</b></td>
+                                    <td><b>Category</b></td>
+                                    <td><b>Service Name</b></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                   </tr>
-                                  <% @users.each do |user| %>
-                                      <% if user.service_role_id == 2 and user.user_status != "Pending" %>
+                                  <% @service.each do |service| %>
+                                      <% if service.service_status == "Pending"%>
                                           <tr>
                                             <td>
-                                              <%= user.user_firstname  %> <%= user.user_lastname  %>
+                                              <%= service.id  %>
                                             </td>
                                             <td>
-                                              <%= user.user_email %>
+                                              <%= service.service_name %>
                                             </td>
                                             <td>
-                                              <button data-toggle="modal" data-target="#squarespaceModal-<%= user.id %>" style="height: auto; width: auto">Details</button>
+                                              <button data-toggle="modal" data-target="#squarespaceModals-<%= service.id %>" style="height: auto; width: auto">Details</button>
                                               <!-- line modal -->
-                                              <div class="modal fade" id="squarespaceModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                              <div class="modal fade" id="squarespaceModals-<%= service.id %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                   <div class="modal-content">
                                                     <div class="modal-header">
@@ -766,20 +764,16 @@
 
                                                       <div class="form-group">
                                                         <label>Name</label>
-                                                        <%= user.user_firstname  %> <%= user.user_lastname  %>
 
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Email</label>
-                                                        <%= user.user_email %>
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Status</label>
-                                                        <%= user.user_status %>
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Information</label>
-                                                        <%= user.user_info %>
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Address</label>
@@ -798,11 +792,10 @@
                                               </div>
                                             </td>
                                             <td>
-                                              <% if user.user_status == "Active" %>
-                                                  <%= link_to "De-activate", admindeactivate_path(user) %>
-                                              <% else %>
-                                                  <%= link_to "Activate", adminactivate_path(user)%>
-                                              <% end %>
+                                              <%= link_to "Accept" , adminactivateservice_path(service)%>
+                                            </td>
+                                            <td>
+                                              <%= link_to "Reject", adminrejectservice_path(service)%>
                                             </td>
                                           </tr>
                                       <% end %>
