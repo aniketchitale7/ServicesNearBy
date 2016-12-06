@@ -70,4 +70,34 @@ class AdminController < ApplicationController
     puts "Done"
     redirect_to admin_index_path
   end
+
+  def deactivateservice
+    id = params[:id] # retrieve movie ID from URI route
+    @service = ServiceService.find(id)
+    my_hash = {'service_status' => "Inactive"}
+    @service.update_attributes!(my_hash)
+    puts "Done"
+    redirect_to admin_index_path
+  end
+
+  def activateservice
+    id = params[:id] # retrieve movie ID from URI route
+    @service = ServiceService.find(id)
+    my_hash = {'service_status' => "Active"}
+    @service.update_attributes!(my_hash)
+    puts "Done"
+    redirect_to admin_index_path
+  end
+
+
+
+  def rejectservice
+    id = params[:id] # retrieve movie ID from URI route
+    @service = ServiceService.find(id)
+    my_hash = {'service_status' => "Reject"}
+    @service.update_attributes!(my_hash)
+    puts "Done"
+    redirect_to admin_index_path
+  end
+
 end

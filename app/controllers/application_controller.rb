@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     else
       session[:loggedUserAddress] =  @service_user.service_address
       session[:roleid] = @service_user.service_role_id
-      if @service_user.service_role_id ==0
+      if @service_user.service_role_id ==1
           session[:tab] = 0
         if @service_user.user_status == "Active"
           admin_index_path
