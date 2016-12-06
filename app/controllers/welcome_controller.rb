@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
 
-
+      @categories = ServiceCategory.all.where(service_categories: {service_status: 'Active'})
   end
 
 

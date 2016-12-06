@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   get '/admin/deactivateservice/:id', :to => 'admin#deactivateservice', :as => 'admindeactivateservice'
   get '/admin/activateservice/:id', :to => 'admin#activateservice', :as => 'adminactivateservice'
+  post '/admin/addcategory' , :to => 'admin#addcategory', :as => 'adminaddcategory'
+
 
   get '/admin/rejectservice/:id', :to => 'admin#rejectservice', :as => 'adminrejectservice'
 

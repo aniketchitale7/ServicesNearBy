@@ -147,8 +147,9 @@ ul.topnav li.icon {display: none;}
 
 
 
-
+              <% if session[:logged_user] != nil and (session[:roleid] == 3 or session[:roleid] == 2)%>
                 <li><a href="#menu">Menu</a></li>
+              <%end%>
             </ul>
           </nav>
 
@@ -175,7 +176,7 @@ ul.topnav li.icon {display: none;}
             <% if session[:logged_user] != nil and session[:roleid] == 3 %>
                 <li><%= link_to "Request Vendor Profile", requestvendoraccount_path %></li>
             <% end %>
-            <% if session[:logged_user] != nil and session[:roleid] == 3 %>
+            <% if session[:logged_user] != nil and (session[:roleid] == 3 or session[:roleid] == 2)%>
                 <li><%= link_to "View Your Services", userservices_path %></li>
             <%end%>
 
