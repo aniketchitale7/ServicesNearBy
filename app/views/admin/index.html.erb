@@ -330,6 +330,7 @@
                     </tr>
                   <% @users.each do |user| %>
                       <% if user.service_role_id == 3 and user.user_status != "Pending" %>
+                        <% @address = user.service_address %>
                         <tr>
                           <td>
                             <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -368,6 +369,9 @@
                                     </div>
                                     <div class="form-group">
                                       <label>Address</label>
+                                      <%= @address.address_line1 %>, <%= @address.address_line2 %>
+                                      <%= @address.address_zip %>, <%= @address.address_city %>
+                                      <%= @address.address_state %>, <%= @address.address_country %>
                                     </div>
 
                                   </div>
@@ -405,6 +409,7 @@
                     </tr>
                     <% @users.each do |user| %>
                         <% if user.service_role_id == 2 and user.user_status != "Pending" %>
+                            <% @address = user.service_address %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -443,6 +448,9 @@
                                         </div>
                                         <div class="form-group">
                                           <label>Address</label>
+                                          <%= @address.address_line1 %>, <%= @address.address_line2 %>
+                                          <%= @address.address_zip %>, <%= @address.address_city %>
+                                          <%= @address.address_state %>, <%= @address.address_country %>
                                         </div>
 
                                       </div>
@@ -480,6 +488,8 @@
                     </tr>
                     <% @users.each do |user| %>
                         <% if user.service_role_id == 1 and user.user_status != "Pending" %>
+                            <% @address = user.service_address %>
+                            <% @address = user.service_address %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -518,6 +528,9 @@
                                         </div>
                                         <div class="form-group">
                                           <label>Address</label>
+                                          <%= @address.address_line1 %>, <%= @address.address_line2 %>
+                                          <%= @address.address_zip %>, <%= @address.address_city %>
+                                          <%= @address.address_state %>, <%= @address.address_country %>
                                         </div>
 
                                       </div>
@@ -554,7 +567,8 @@
                       <td></td>
                     </tr>
                     <% @users.each do |user| %>
-                        <% if user.service_role_id == 1 and user.user_status == "Pending" %>
+                        <% if user.service_role_id == 3 and user.user_status == "Pending" %>
+                            <% @address = user.service_address %>
                             <tr>
                               <td>
                                 <%= user.user_firstname  %> <%= user.user_lastname  %>
@@ -593,6 +607,9 @@
                                         </div>
                                         <div class="form-group">
                                           <label>Address</label>
+                                          <%= @address.address_line1 %>, <%= @address.address_line2 %>
+                                          <%= @address.address_zip %>, <%= @address.address_city %>
+                                          <%= @address.address_state %>, <%= @address.address_country %>
                                         </div>
 
                                       </div>
@@ -619,6 +636,38 @@
                   </table>
                 </div>
                 <div class="tab-pane fade" id="tabcategories">
+                  <div style="height: 30px"><button data-toggle="modal" data-target="#squarespaceModalCat" style="height: auto; width: auto">Add Category</button></div>
+                  <!-- line modal -->
+                  <div class="modal fade" id="squarespaceModalCat" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" style="height: auto"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                          <h3 class="modal-title" id="lineModalLabel">Add Category</h3>
+                        </div>
+                        <div class="modal-body">
+                          <%= form_tag adminaddcategory_path do %>
+                              <div class="form-group">
+                                <label>Categoery Name</label>
+                              </div>
+                              <%= text_field :service_name, 'service_name' %>
+                              <div class="form-group">
+                                <label>Description</label>
+                              </div>
+                              <%= text_field :service_information, 'service_information' %>
+                              <%= submit_tag 'Save Changes' %>
+                          <% end %>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                            <div class="btn-group" role="group">
+                              <button type="button" class="btn btn-default" data-dismiss="modal"  role="button" style="height: auto">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <table>
                     <tr>
                       <td><b>Category</b></td>

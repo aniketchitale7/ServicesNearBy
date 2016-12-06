@@ -17,7 +17,7 @@ class AdminController < ApplicationController
     id = params[:id] # retrieve movie ID from URI route
     @user = ServiceUser.find(id)
     my_hash = {'user_status' => "Active",
-                'service_roles_id' => 2}
+                'service_role_id' => 2}
     @user.update_attributes!(my_hash)
     puts "Done"
     redirect_to admin_index_path
@@ -97,6 +97,17 @@ class AdminController < ApplicationController
     my_hash = {'service_status' => "Reject"}
     @service.update_attributes!(my_hash)
     puts "Done"
+    redirect_to admin_index_path
+  end
+
+  def addcategory
+    name = params[:service_name]["service_name"]
+    description = params[:service_information]["service_information"]
+    @hashValue= Hash.new
+    @hashValue["service_name"] = name
+    @hashValue["service_information"] = description
+    @hashValue["service_status"] = 'Active'
+    @category = ServiceCategory.create!(@hashValue)
     redirect_to admin_index_path
   end
 
