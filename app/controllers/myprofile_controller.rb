@@ -83,6 +83,7 @@ class MyprofileController < ApplicationController
   def servicerequests
     if session[:logged_user] != nil
       @loggedUser = session[:logged_user]
+      puts @loggedUser
       @servicefixtures = ServiceFixture.joins(:service_service).where(service_services: {service_user_id: @loggedUser["id"]}, service_fixtures:{ completed: 'Pending'})
       #@servicefixtures = ServiceFixture.all()
       puts(@servicefixtures)
