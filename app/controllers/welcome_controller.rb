@@ -6,11 +6,17 @@ class WelcomeController < ApplicationController
 
 
   def search
+    @filterid = params["filterid"]
+
     @searchterm = params[:search_box]
     @finalResult = []
 
     # @result = ServiceService.where("service_description LIKE ?", like_keyword = "%#{@searchterm}%")
     @result = ServiceService.where("service_description LIKE ? OR keywords LIKE ?", "%#{@searchterm}%", "%#{@searchterm}%")
+    if(@filterid == 'Price')
+      @result = @result.order("service_price DESC")
+    end
+
     @result.each  do |item|
       @service_user_name = item.service_user
       @vendorAddress = item.service_address

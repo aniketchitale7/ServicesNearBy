@@ -180,7 +180,7 @@
     <header>
       <ul class="topnav" id="myTopnav">
         <li><a class="active">Filters: </a></li>
-        <li><a href="#news">Price</a></li>
+        <li ><%= button_to 'Price', welcome_search_path(:filterid => 'Price')%></li>
         <li><a href="#contact">A-Z</a></li>
         <li><a href="#about">Rating</a></li>
         <li class="location"><a>Location</a></li>
