@@ -14,22 +14,11 @@ class SearchController < ApplicationController
 
   def create
     puts session[:reviewserviceid]
-    review = Hash.new
-    @user = ServiceUser.find_by_user_email(current_user.email)
-    review["service_user_id"] = session[:reviewserviceid]
-    review["service_service_id"] = params["id"]
-    review["review_info"] = params["user_comments"]
-    review["review_rating"] = params["rating"]
-    puts review
-    #@servicereview = ServiceReview.create!(review)
-    redirect_to welcome_index_path
+    redirect_to search_feed_path
   end
 
   def feedback
     id = params[:id]
-    puts "jhdhdhd"
-    #print (id)
-    puts "inside feedback"
     puts session[:reviewserviceid]
     review = Hash.new
     @user = ServiceUser.find_by_user_email(current_user.email)
@@ -38,8 +27,7 @@ class SearchController < ApplicationController
     review["review_info"] = params["user_comments"]
     review["review_rating"] = params["rating"]
     puts review
-    #@servicereview = ServiceReview.create!(review)
-    #redirect_to welcome_index_path
+    @servicereview = ServiceReview.create!(review)
     redirect_to welcome_index_path
   end
 
