@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'rails_helper'
-RSpec.describe ApplicationController, type: :controller do
+RSpec.describe BusinessprofileController, type: :controller do
 
   # describe "Form to enter details" do
   #   it "check which user has logged in" do

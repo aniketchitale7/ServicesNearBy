@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Service_User, type: :model do
+RSpec.describe ServiceUser, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
