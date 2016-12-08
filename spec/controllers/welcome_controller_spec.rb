@@ -14,11 +14,27 @@ RSpec.describe WelcomeController, type: :controller do
   #   #   expect(user.roles[0].name).to eq 'driver'
   #     # get :new
   #     # expect(response).to render_template("driverdetails/new")
-  #   end
+  #   endrake db:seed RAILS_ENV=test
   # end
 
+  describe 'POST #search' do
+    it 'should sort location' do
+    # post :search, {@filterid => 'Price', @searchterm => 'Iowa', @category => nil, @filter =>nil, @latitude => nil, @longitude => nil}
+      post :search, {:category => 'location', :category_box => 'Iowa'}
+
+      post :search, {:category => 'distance', :category_box => 'Iowa'}
+
+      post :search, {:filterid => 'Price'}
+
+      post :search, {:filterid => 'Price', :flagPrice => true}
+
+      post :search, {:filterid => 'AZ', :flagAZ => false}
+
+      post :search, {:filterid => 'AZ'}
 
 
-
+      post :requestservice, {:id => 1, :logged_user => 1}
+    end
+  end
 
 end
