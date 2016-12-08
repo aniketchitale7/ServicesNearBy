@@ -3,7 +3,6 @@ class AdminController < ApplicationController
 
   def index
 
-    puts "kalyan"
     @users = ServiceUser.all
     puts @users.length
     @category = ServiceCategory.all
