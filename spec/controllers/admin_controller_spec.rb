@@ -60,4 +60,44 @@ RSpec.describe AdminController, type: :controller do
 
   end
 
+
+
+  describe 'Rejecting vendor' do
+    it 'should call click dectivate in service tab' do
+      post :reject, {:id => 7}
+    end
+
+  end
+
+
+  describe 'Acceptiong vendor' do
+    it 'should call click dectivate in service tab' do
+      post :show, {:id => 7}
+    end
+
+  end
+
+  describe 'Rejecting service' do
+    it 'should call click dectivate in service tab' do
+      post :rejectservice, {:id => 2}
+    end
+
+  end
+
+
+
+  describe 'Loading' do
+    it 'page load' do
+      get :index
+    end
+
+  end
+
+  describe 'Adding category' do
+    it 'page load' do
+      post :addcategory, {:service_name => { :service_name => "test"},:service_information => { :service_information => "test"}}
+    end
+
+  end
+
 end
