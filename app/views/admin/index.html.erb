@@ -387,9 +387,9 @@
                           </td>
                           <td>
                             <% if user.user_status == "Active" %>
-                                <%= link_to "De-activate", admindeactivate_path(user), id: 'userdeactive' %>
+                                <%= link_to "De-activate", admindeactivate_path(user), id: 'userdeactive_'+user.user_email %>
                             <% else %>
-                                <%= link_to "Activate", adminactivate_path(user), id: 'useractive'%>
+                                <%= link_to "Activate", adminactivate_path(user), id: 'useractive_'+user.user_email%>
                             <% end %>
                           </td>
                         </tr>
@@ -465,9 +465,9 @@
                               </td>
                               <td>
                                 <% if user.user_status == "Active" %>
-                                    <%= link_to "De-activate", admindeactivate_path(user), id: 'vendordeactive' %>
+                                    <%= link_to "De-activate", admindeactivate_path(user), id: 'vendordeactive_'+user.user_email %>
                                 <% else %>
-                                    <%= link_to "Activate", adminactivate_path(user), id: 'vendoractive'%>
+                                    <%= link_to "Activate", adminactivate_path(user), id: 'vendoractive_'+user.user_email%>
                                 <% end %>
                               </td>
                             </tr>
@@ -544,9 +544,9 @@
 
                               <td>
                                 <% if user.user_status == "Active" %>
-                                    <%= link_to "De-activate", admindeactivate_path(user), id: 'admindeactive' %>
+                                    <%= link_to "De-activate", admindeactivate_path(user), id: 'admindeactive_'+user.user_email %>
                                 <% else %>
-                                    <%= link_to "Activate", adminactivate_path(user), id: 'adminactive'%>
+                                    <%= link_to "Activate", adminactivate_path(user), id: 'adminactive_'+user.user_email%>
                                 <% end %>
                               </td>
                             </tr>
