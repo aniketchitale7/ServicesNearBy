@@ -2,23 +2,25 @@ require 'spec_helper'
 require 'rails_helper'
 RSpec.describe SearchController, type: :controller do
 
-  # describe "Form to enter details" do
-  #   it "check which user has logged in" do
-  #   #  user = User.new(
-  #   #  first_name: 'Aaron',
-  #   #  last_name: 'Sumner',
-  #   #  email: 'tester@example.com',
-  #   #  password: '12341234')
-  #   #
-  #   #   user.roles << Role.find_by_name('driver')
-  #   #   expect(user.roles[0].name).to eq 'driver'
-  #     # get :new
-  #     # expect(response).to render_template("driverdetails/new")
-  #   end
-  # end
+  describe 'Calling  index'do
+    it 'should call index page' do
+      post :index, {:id => 1}
+    end
 
+    it 'should create' do
+      get :create
+      expect(response).to redirect_to("/search/feed")
+    end
 
+    user = User.find(1)
+    before { allow(controller).to receive(:current_user) { user } }
 
+    it 'for feedback path' do
+      session[:reviewserviceid] = 1
+      post :feedback, {:id => 1}
+      expect(response).to redirect_to("/welcome/index")
+    end
+  end
 
 
 end
