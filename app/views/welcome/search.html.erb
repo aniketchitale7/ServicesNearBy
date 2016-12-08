@@ -167,7 +167,7 @@
       <%= form_tag :action => 'search' do %>
           <div class="row uniform">
             <div class="6u 12u$(xsmall)">
-              <%= text_field_tag 'search_box',nil, placeholder: "Enter Search Items" %>
+              <%= text_field_tag 'search_box',nil, placeholder: $searchKeyword %>
             </div>
             <div class="6u$ 12u$(xsmall)">
               <%= submit_tag 'Search'%>
@@ -181,7 +181,7 @@
       <ul class="topnav" id="myTopnav">
         <li><a class="active">Filters: </a></li>
         <li ><%= button_to 'Price', welcome_search_path(:filterid => 'Price')%></li>
-        <li><a href="#contact">A-Z</a></li>
+        <li><%= button_to 'A-Z', welcome_search_path(:filterid => 'AZ')%></li>
         <li><a href="#about">Rating</a></li>
         <li class="location"><a>Location</a></li>
         <li class="distance"><a>Distance</a></li>
@@ -202,14 +202,30 @@
           <%= submit_tag 'Filter'%>
         </div>
       </div>
-      <div class="row uniform" id="locationShow" hidden>
-        <div class="6u 12u$(xsmall)">
-          <%= text_field_tag 'category_box',nil, placeholder: "Enter City" %>
+      <form action="search" method="post">
+        <div class="row uniform" id="locationShow" hidden>
+          <div class="6u 12u$(xsmall)">
+            <%= text_field_tag 'category_box',nil, placeholder: "Enter City" %>
+            <input type="hidden" name="category" id="category" class="form-control input-lg" value="location" />
+          </div>
+          <div class="6u$ 12u$(xsmall)">
+            <%= submit_tag 'Filter'%>
+          </div>
         </div>
-        <div class="6u$ 12u$(xsmall)">
-          <%= submit_tag 'Filter'%>
+      </form>
+      <form action="search" method="post">
+        <div class="row uniform" id="distanceShow" hidden>
+          <div class="6u 12u$(xsmall)">
+            <%= text_field_tag 'autocomplete',nil, placeholder: "Enter City", :onFocus => "geolocate()"%>
+            <input type="text" name="latitude" id="latitude" class="form-control input-lg" placeholder="" />
+            <input type="text" name="longitude" id="longitude" class="form-control input-lg" placeholder="" />
+            <input type="text" name="category" id="category" class="form-control input-lg" value="distance" />
+          </div>
+          <div class="6u$ 12u$(xsmall)">
+            <%= submit_tag 'Filter', :onClick => "getLatLong()" %>
+          </div>
         </div>
-      </div>
+      </form>
       <div class="row uniform" id="distanceShow" hidden>
         <div class="6u 12u$(xsmall)">
           <%= text_field_tag 'category_box',nil, placeholder: "Filter Distance" %>
@@ -227,7 +243,7 @@
         <span class="image left">
           <%= image_tag("restaurant.jpg") %>
         </span>
-              <b><h2><%= users["Vendor_Name"] %></h2></b>
+              <b><h2><%= users["Service_Name"] %></h2></b>
               <b>Rating: </b>9.8/10<br/>
               <b>Address: </b><%= users["address"] %><br/>
               <b>Phone Number: </b><%= users["Vendor_PhoneNo"] %><br/>
@@ -288,35 +304,9 @@
 
 
 
-            </p>g
-
-        <%end %>
-    </div>
-    <div class = "lexico" hidden>
-      <%
-        sorted = @finalResult.sort_by { |k| k["Vendor_Name"] }
-        puts "Ajinkya"
-        puts sorted
-
-
-      %>
-      <a href = "">
-        <% sorted.each do |users| %>
-            <p>
-        <span class="image left">
-          <%= image_tag("restaurant.jpg") %>
-        </span>
-              <b><h2><%= users["Vendor_Name"] %></h2></b>
-              <b>Rating: </b>9.8/10<br/>
-              <b>Address: </b><%= users["address"] %><br/>
-              <b>Phone Number: </b><%= users["Vendor_PhoneNo"] %><br/>
-              <b>Time : </b><%= users["time"] %><br/><br/>
-              <br/>
             </p>
+
         <%end %>
-      </a>
-
-
     </div>
 
   </div>
@@ -337,42 +327,6 @@
   </div>
 
   <body>
-  <div id="locationField">
-    <input id="autocomplete" placeholder="Enter your address"
-           onFocus="geolocate()" type="text"></input>
-  </div>
-
-  <table id="address">
-    <tr>
-      <td class="label">Street address</td>
-      <td class="slimField"><input class="field" id="street_number"
-                                   disabled="true"></input></td>
-      <td class="wideField" colspan="2"><input class="field" id="route"
-                                               disabled="true"></input></td>
-    </tr>
-    <tr>
-      <td class="label">City</td>
-      <!-- Note: Selection of address components in this example is typical.
-           You may need to adjust it for the locations relevant to your app. See
-           https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-      -->
-      <td class="wideField" colspan="3"><input class="field" id="locality"
-                                               disabled="true"></input></td>
-    </tr>
-    <tr>
-      <td class="label">State</td>
-      <td class="slimField"><input class="field"
-                                   id="administrative_area_level_1" disabled="true"></input></td>
-      <td class="label">Zip code</td>
-      <td class="wideField"><input class="field" id="postal_code"
-                                   disabled="true"></input></td>
-    </tr>
-    <tr>
-      <td class="label">Country</td>
-      <td class="wideField" colspan="3"><input class="field"
-                                               id="country" onclick=" return getLatLong()" disabled="true"></input></td>
-    </tr>
-  </table>
   <script>
     // This example displays an address form, using the autocomplete feature
     // of the Google Places API to help users fill in the information.
@@ -393,13 +347,14 @@
   function getLatLong()
   {
     var add = document.getElementById('autocomplete').value;
-    alert(add);
     var geo = new google.maps.Geocoder;
     geo.geocode({'address':add},function(results, status){
       if (status == google.maps.GeocoderStatus.OK) {
-        var myLat = results[0].geometry.location;
-        var myLng = results[0].geometry.longitude;
-        alert(myLat +" : "+ myLng);
+        var myLatLng = results[0].geometry.location;
+        var myLng = results[0].geometry.location.lng();
+        var myLat = results[0].geometry.location.lat();
+        document.getElementById('latitude').value = myLat;
+        document.getElementById('longitude').value = myLng;
         // Add some code to work with myLatLng
 
       } else {
@@ -422,6 +377,7 @@
     }
 
     function fillInAddress() {
+      getLatLong();
       // Get the place details from the autocomplete object.
       var place = autocomplete.getPlace();
 
