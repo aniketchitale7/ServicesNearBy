@@ -14,7 +14,7 @@ RSpec.describe Devise::SessionsController, type: :controller do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       get :new
       expect(response).to render_template("devise/sessions/new")
-      post :create, {:user => {:email => "servicesnearby@gmail.com", :password => "aaaaaa"}}
+      post :create, {:user => {:email => "servicesnearby1@gmail.com", :password => "aaaaaa"}}
       expect(response).to render_template("/")
     end
   end
