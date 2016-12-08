@@ -369,9 +369,8 @@
                                     </div>
                                     <div class="form-group">
                                       <label>Address</label>
-                                      <%= @address.address_line1 %>, <%= @address.address_line2 %>
-                                      <%= @address.address_zip %>, <%= @address.address_city %>
-                                      <%= @address.address_state %>, <%= @address.address_country %>
+                                      <%= @address.address %>
+                                      <%= @address.landmark %>
                                     </div>
 
                                   </div>
@@ -388,9 +387,9 @@
                           </td>
                           <td>
                             <% if user.user_status == "Active" %>
-                                <%= link_to "De-activate", admindeactivate_path(user) %>
+                                <%= link_to "De-activate", admindeactivate_path(user), id: 'userdeactive' %>
                             <% else %>
-                                <%= link_to "Activate", adminactivate_path(user)%>
+                                <%= link_to "Activate", adminactivate_path(user), id: 'useractive'%>
                             <% end %>
                           </td>
                         </tr>
@@ -448,9 +447,8 @@
                                         </div>
                                         <div class="form-group">
                                           <label>Address</label>
-                                          <%= @address.address_line1 %>, <%= @address.address_line2 %>
-                                          <%= @address.address_zip %>, <%= @address.address_city %>
-                                          <%= @address.address_state %>, <%= @address.address_country %>
+                                          <%= @address.address %>
+                                          <%= @address.landmark %>
                                         </div>
 
                                       </div>
@@ -467,9 +465,9 @@
                               </td>
                               <td>
                                 <% if user.user_status == "Active" %>
-                                    <%= link_to "De-activate", admindeactivate_path(user) %>
+                                    <%= link_to "De-activate", admindeactivate_path(user), id: 'vendordeactive' %>
                                 <% else %>
-                                    <%= link_to "Activate", adminactivate_path(user)%>
+                                    <%= link_to "Activate", adminactivate_path(user), id: 'vendoractive'%>
                                 <% end %>
                               </td>
                             </tr>
@@ -528,9 +526,8 @@
                                         </div>
                                         <div class="form-group">
                                           <label>Address</label>
-                                          <%= @address.address_line1 %>, <%= @address.address_line2 %>
-                                          <%= @address.address_zip %>, <%= @address.address_city %>
-                                          <%= @address.address_state %>, <%= @address.address_country %>
+                                          <%= @address.address %>
+                                          <%= @address.landmark %>
                                         </div>
 
                                       </div>
@@ -547,9 +544,9 @@
 
                               <td>
                                 <% if user.user_status == "Active" %>
-                                    <%= link_to "De-activate", admindeactivate_path(user) %>
+                                    <%= link_to "De-activate", admindeactivate_path(user), id: 'admindeactive' %>
                                 <% else %>
-                                    <%= link_to "Activate", adminactivate_path(user)%>
+                                    <%= link_to "Activate", adminactivate_path(user), id: 'adminactive'%>
                                 <% end %>
                               </td>
                             </tr>
@@ -607,9 +604,8 @@
                                         </div>
                                         <div class="form-group">
                                           <label>Address</label>
-                                          <%= @address.address_line1 %>, <%= @address.address_line2 %>
-                                          <%= @address.address_zip %>, <%= @address.address_city %>
-                                          <%= @address.address_state %>, <%= @address.address_country %>
+                                          <%= @address.address %>
+                                          <%= @address.landmark %>
                                         </div>
 
                                       </div>
@@ -754,9 +750,8 @@
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Address</label>
-                                                        <%= @ServiceAddress.address_line1 %>, <%= @ServiceAddress.address_line2 %>
-                                                        <%= @ServiceAddress.address_zip %>, <%= @ServiceAddress.address_city %>
-                                                        <%= @ServiceAddress.address_state %>, <%= @ServiceAddress.address_country %>
+                                                        <%= @address.address %>
+                                                        <%= @address.landmark %>
                                                       </div>
 
                                                     </div>
@@ -827,9 +822,8 @@
                                                       </div>
                                                       <div class="form-group">
                                                         <label>Address</label>
-                                                        <%= @ServiceAddress.address_line1 %>, <%= @ServiceAddress.address_line2 %>
-                                                        <%= @ServiceAddress.address_zip %>, <%= @ServiceAddress.address_city %>
-                                                        <%= @ServiceAddress.address_state %>, <%= @ServiceAddress.address_country %>
+                                                        <%= @address.address %>
+                                                        <%= @address.landmark %>
                                                       </div>
 
                                                     </div>

@@ -3,25 +3,53 @@ Given /^I am on the ServicesNearby admin page$/ do
   visit admin_index_path
 end
 
-When /^I have logged in with email "(.*?)" and password "(.*?)"$/ do |emailid, passwords|
-  visit new_user_session_path
-  fill_in "Email", :with => emailid
-  fill_in "Password", :with => passwords
-  click_button 'Log in'
+When /^I have deactivating user in with email "(.*?)"$/ do |emailid|
+  visit admin_index_path
+  page.find('[@id=userdeactive]').click
+end\
+
+
+When /^I have activating user in with email "(.*?)"$/ do |emailid|
+  visit admin_index_path
+  page.find('[@id=useractive]').click
+end\
+
+When /^I have deactivating admin in with email "(.*?)"$/ do |emailid|
+  visit admin_index_path
+  page.find('[@id=admindeactive]').click
+end\
+
+
+When /^I have activating admin in with email "(.*?)"$/ do |emailid|
+  visit admin_index_path
+  page.find('[@id=adminactive]').click
+end\
+
+
+When /^I have deactivating vendor in with email "(.*?)"$/ do |emailid|
+  visit admin_index_path
+  page.find('[@id=vendordeactive]').click
+end\
+
+
+When /^I have activating vendor in with email "(.*?)"$/ do |emailid|
+  visit admin_index_path
+  page.find('[@id=vendoractive]').click
+end\
+
+
+
+
+Then(/^I should see activated successfull\.$/) do
+  #Signed in successfully
+  expect(page).to have_content("Users")
 end
 
-Then(/^I should see Signed in successfully\.$/) do
+
+Then(/^I should see de-activated successfull\.$/) do
   #Signed in successfully
-  expect(page).to have_content("Signed in successfully")
-  #request.request_uri.should == send(welcome_index_path)
-  #assert page.current_path == welcome_index_path
+  expect(page).to have_content("Users")
 end
 
-Then(/^I should see Invalid Email or password\.$/) do
-  #Signed in successfully
-  expect(page).to have_content("Invalid Email or password")
-  #request.request_uri.should == send(welcome_index_path)
-  #assert page.current_path == welcome_index_path
-end
 
 
