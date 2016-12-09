@@ -32,8 +32,14 @@ RSpec.describe WelcomeController, type: :controller do
 
       post :search, {:filterid => 'AZ'}
 
+      post :search, {:category => 'distance', :latitude => '19.0760', :longitude => '72.8777'}
+      post :requestservice, {:id => 1}
+    end
 
-      post :requestservice, {:id => 1, :logged_user => 1}
+    it 'requestservice' do
+      service_user = ServiceUser.find_by_user_email("user.active@gmail.com")
+      session[:logged_user] = service_user
+      post :requestservice, {:id => 1}
     end
   end
 
