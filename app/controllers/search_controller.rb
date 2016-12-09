@@ -13,12 +13,12 @@ class SearchController < ApplicationController
   end
 
   def create
+    session[:reviewserviceid] = params[:id]
     puts session[:reviewserviceid]
     redirect_to search_feed_path
   end
 
   def feedback
-    id = params[:id]
     puts session[:reviewserviceid]
     review = Hash.new
     @user = ServiceUser.find_by_user_email(current_user.email)

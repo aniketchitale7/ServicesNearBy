@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   #get 'search/feed', :to => 'search#index', :as => 'searchindex'
   resources :admin
   get 'search/feed'
-  post 'search/create'
+  post 'search/create/:id', :to => 'search#create', :as => 'search_create'
   get '/admin/reject/:id', :to => 'admin#reject', :as => 'adminreject'
   get '/admin/activate/:id', :to => 'admin#activate', :as => 'adminactivate'
   get '/admin/deactivate/:id', :to => 'admin#deactivate', :as => 'admindeactivate'
