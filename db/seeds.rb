@@ -30,7 +30,7 @@ user = [{:email => 'user.inactive@gmail.com', :password => 'kanna91221', :confir
         {:email => 'vendor.active@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
         {:email => 'vendor.inactive@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
         {:email => 'user.pending@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
-        {:email => 'first.time@gmail.com', :password => 'kanna91221'}
+        {:email => 'first.time@gmail.com', :password => 'kanna91221' , :confirmed_at => '2016-12-08 21:59:04.204878'}
 ]
 
 
