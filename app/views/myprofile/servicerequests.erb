@@ -9,15 +9,17 @@
     <th></th>
   </tr>
   <% @servicefixtures.each do |servicefixture| %>
+      <% @serviceuser = servicefixture.service_user %>
+      <% @service = servicefixture.service_service %>
       <tr>
         <td>
           <%= servicefixture.id  %>
         </td>
         <td>
-          <%= servicefixture.service_service_id  %>
+          <%= @service.service_name  %>
         </td>
         <td>
-          <%= servicefixture.service_user_id  %>
+          <%= @serviceInfo.service_user_email  %>
         </td>
         <td>
           <%= button_to "Accept",acceptRequestVendor_path(servicefixture["id"])%>
