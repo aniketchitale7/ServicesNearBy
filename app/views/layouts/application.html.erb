@@ -14,97 +14,7 @@
   <!--<script src="/assets/javascripts/util.js"></script>-->
   <!--&lt;!&ndash;[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]&ndash;&gt;-->
   <!--<script src="/assets/javascripts/main.js"></script>-->
-  <style>
-    ul.pagination {
-      display: inline-block;
-      padding: 0;
-      margin: 0;
-    }
-
-    ul.pagination li {display: inline;}
-
-    ul.pagination li a {
-      color: black;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-      transition: background-color .3s;
-      border: 1px solid #ddd;
-    }
-
-    ul.pagination li a.active {
-      background-color: #4CAF50;
-      color: white;
-      border: 1px solid #4CAF50;
-    }
-
-    ul.pagination li a:hover:not(.active) {background-color: #ddd;}
-
-    div.center {text-align: center;}
-
-body {margin:0;}
-ul.topnav {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-ul.topnav li {float: left;}
-
-ul.topnav li a {
-  display: inline-block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-ul.topnav li a:hover {background-color: #555;}
-
-ul.topnav li.icon {display: none;}
-
-@media screen and (max-width:680px) {
-  ul.topnav li:not(:first-child) {display: none;}
-  ul.topnav li.icon {
-    float: right;
-    display: inline-block;
-  }
-}
-
-@media screen and (max-width:680px) {
-  ul.topnav.responsive {position: relative;}
-  ul.topnav.responsive li.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  ul.topnav.responsive li {
-    float: none;
-    display: inline;
-  }
-  ul.topnav.responsive li a {
-    display: block;
-    text-align: left;
-  }
-}
-  </style>
-  <script>
-    function myFunction() {
-      var x = document.getElementById("myTopnav");
-      if (x.className === "topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "topnav";
-      }
-    }
-  </script>
 </head>
-
-
 <body>
 <div class="container">
   <% flash.each do |key, value| %>
@@ -113,10 +23,33 @@ ul.topnav li.icon {display: none;}
       </div>
   <% end %>
 </div>
-
-
 <div class="container">
 </div>
+<<<<<<< HEAD
+<div id="wrapper">
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <span class="symbol"><%= image_tag("logo.svg", :alt => "logo") %></span><span class="title">ServicesNearBy</span>
+      </a>
+      <!-- Nav -->
+      <nav>
+        <ul>
+          <% if user_signed_in? %>
+              <li>
+                <%= link_to('Logout', destroy_user_session_path, class: 'button fit' ) %>
+              </li>
+          <% else %>
+              <li>
+                <%= link_to 'Login / Sign Up', new_user_registration_path, :method => :delete , class: 'button fit' %>
+              </li>
+          <% end %>
+          <li><a href="#menu">Menu</a></li>
+        </ul>
+      </nav>
+=======
 
     <div id="wrapper">
       <!-- Header -->
@@ -197,11 +130,33 @@ ul.topnav li.icon {display: none;}
         </div>
       </footer>
 
+>>>>>>> master
     </div>
-
-
-
-
-
+  </header>
+  <!-- Menu -->
+  <% if session[:logged_user] != nil and session[:roleid] != 0 %>
+      <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+          <li> <%= link_to('Home', welcome_index_path) %></li>
+          <li><a>About Us</a></li>
+          <li><a>Contact Us</a></li>
+          <li><%= link_to "My Profile", myprofile_myprofile_path %></li>
+          <% if session[:logged_user] != nil and session[:roleid] == 2 %>
+              <li><%= link_to "My Services", service_services_index_path  %></li>
+          <% end %>
+        </ul>
+      </nav>
+  <% end %>
+  <%= yield %>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">SELT</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
 </body>
 </html>

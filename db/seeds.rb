@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+<<<<<<< HEAD
+=======
 
 service_role = [{:role_name => 'Admin' , :role_description => 'Admin'  } ,
                {:role_name => 'Vendor' , :role_description => 'Vendor' },
@@ -159,3 +161,4 @@ end
 services_fix.each do |user|
   ServiceFixture.create!(user)
 end
+>>>>>>> master

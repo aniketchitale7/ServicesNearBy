@@ -1,4 +1,12 @@
 class WelcomeController < ApplicationController
+<<<<<<< HEAD
+  def index
+
+  end
+
+<<<<<<< HEAD
+=======
+=======
   skip_before_filter :verify_authenticity_token
 
   def index
@@ -8,6 +16,7 @@ class WelcomeController < ApplicationController
   $flagPrice = false
   $flagAZ = false
   $searchKeyword = ""
+>>>>>>> master
 
   def search
     @filterid = params["filterid"]
@@ -75,6 +84,9 @@ class WelcomeController < ApplicationController
     end
 
   end
+<<<<<<< HEAD
+>>>>>>> master
+=======
 
   def filterLocation
     if(@category == 'location')
@@ -132,4 +144,5 @@ class WelcomeController < ApplicationController
     { :mi => dMi, :km => dKm, :ft => dFeet, :m => dMeters }
   end
 
+>>>>>>> master
 end

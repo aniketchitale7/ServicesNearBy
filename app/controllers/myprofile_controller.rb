@@ -1,20 +1,56 @@
+
 class MyprofileController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+<<<<<<< HEAD
+=======
   def index
     #@user = ServiceUser.find_by_user_email(current_user.email)
     session[:logged_user]  = ServiceUser.find_by_user_email(current_user.email)
     #session[:loggedUserAddress] = @user.service_address
   end
 
+>>>>>>> master
   def service_user_params
-    params.require(:user_firstname)
+
+
+      params.require(:user_firstname)
   end
-
-
+<<<<<<< HEAD
   def new
-
+    puts "testing"
   end
+
+
+  def create
+
+    @user_service = Service_User.new
+    my_hash = {'user_firstname' => params.require(:user_firstname),
+               'user_lastname' => params.require(:user_lastname),
+               'user_phone' => params.require(:user_phone),
+               'service_roles_id' => params.require(:service_roles_id),
+               'user_email' => "DUMMY",
+               'user_password' => "DUMMY",
+               'user_name' => "testing",
+               'created_at' => "DUMMY",
+               'updated_at' => "DUMMY"}
+    puts my_hash
+    # @user_service.user_firstname = params.require(:user_firstname)
+    # @user_service.user_lastname = params.require(:user_lastname)
+    # @user_service.user_phone =params.require(:user_phone)
+    # @user_service.service_roles_id = params.require(:service_roles_id)
+    # @user_service.user_email = "dummy"
+    # @user_service.user_name = "dummy"
+    # @user_service.user_password = "dummy"
+    # @user_service.created_at = "25-Nov-1992"
+    # @user_service.updated_at = "25-Nov-1992"
+    @user_new = Service_User.create_service_user(my_hash)
+    # @user_new = Service_User.create(my_hash)
+  end
+
+
+end
+=======
 
   def show
 
@@ -126,3 +162,4 @@ class MyprofileController < ApplicationController
     redirect_to servicerequestsvendor_path
   end
 end
+>>>>>>> master

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
-  #get 'myprofile/myprofile'
+  get 'myprofile/myprofile'
   root 'welcome#index'
+<<<<<<< HEAD
+  get 'service_services/index'
+  post 'myprofile/create'
+  get 'welcome/admin'
+=======
   post 'application/search'
   post 'welcome/search'
   get 'myprofile/requestvendoraccount' , :to => 'myprofile#requestvendoraccount', :as => 'requestvendoraccount'
@@ -29,6 +34,7 @@ Rails.application.routes.draw do
   get '/admin/deactivate/:id', :to => 'admin#deactivate', :as => 'admindeactivate'
   get '/admin/deactivatecategory/:id', :to => 'admin#deactivatecategory', :as => 'admindeactivatecategory'
   get '/admin/activatecategory/:id', :to => 'admin#activatecategory', :as => 'adminactivatecategory'
+>>>>>>> master
 
   get '/admin/deactivateservice/:id', :to => 'admin#deactivateservice', :as => 'admindeactivateservice'
   get '/admin/activateservice/:id', :to => 'admin#activateservice', :as => 'adminactivateservice'
