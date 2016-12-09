@@ -23,13 +23,13 @@ service_address = [{:address => '1100 Oakcrest Street', :landmark => 'Apt B',:ad
 
 
 
-user = [{:email => 'user.inactive@gmail.com', :password => 'kanna91221'},
-        {:email => 'user.active@gmail.com', :password => 'kanna91221'},
-        {:email => 'admin.inactive@gmail.com', :password => 'kanna91221'},
-        {:email => 'admin.active@gmail.com', :password => 'kanna91221'},
-        {:email => 'vendor.active@gmail.com', :password => 'kanna91221'},
-        {:email => 'vendor.inactive@gmail.com', :password => 'kanna91221'},
-        {:email => 'user.pending@gmail.com', :password => 'kanna91221'},
+user = [{:email => 'user.inactive@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
+        {:email => 'user.active@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
+        {:email => 'admin.inactive@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
+        {:email => 'admin.active@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
+        {:email => 'vendor.active@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
+        {:email => 'vendor.inactive@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
+        {:email => 'user.pending@gmail.com', :password => 'kanna91221', :confirmed_at => '2016-12-08 21:59:04.204878'},
         {:email => 'first.time@gmail.com', :password => 'kanna91221'}
 ]
 
@@ -127,7 +127,7 @@ services_ser = [{:service_name => 'Stella Home Decore', :service_address_id => 1
                 }]
 
 
-
+services_fix = [{:service_user_id => 1, :service_service_id => 1, :completed => "Done"}]
 
 service_role.each do |serviceadd|
   ServiceRole.create!(serviceadd)
@@ -156,4 +156,6 @@ user.each do |user|
   User.create!(user)
 end
 
-
+services_fix.each do |user|
+  ServiceFixture.create!(user)
+end

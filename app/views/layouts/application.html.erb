@@ -166,7 +166,7 @@ ul.topnav li.icon {display: none;}
             <li><a>About Us</a></li>
             <li><a>Contact Us</a></li>
             <% if user_signed_in? %>
-            <li><%= link_to "My Profile", myprofile_index_path %></li>
+            <li><%= link_to "My Profile", myprofile_index_path, id: 'myprofileid' %></li>
                 <% @serviceuser = session[:logged_user]%>
                 <%end%>
             <% if @serviceuser != nil and session[:roleid] == 2 %>
