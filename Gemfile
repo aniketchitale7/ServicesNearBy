@@ -34,7 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker', '~> 1.5'
 
 gem 'devise'
-
+gem 'geocoder'
 gem 'rails-controller-testing'
 gem 'factory_girl_rails'
 

@@ -13,12 +13,8 @@
 ActiveRecord::Schema.define(version: 20161106054018) do
 
   create_table "service_addresses", force: :cascade do |t|
-    t.string  "address_line1",     null: false
-    t.string  "address_line2"
-    t.integer "address_zip"
-    t.string  "address_city"
-    t.string  "address_state"
-    t.string  "address_country"
+    t.string  "address",           null: false
+    t.string  "landmark"
     t.decimal "address_lattitute"
     t.decimal "address_longitude"
   end
@@ -29,12 +25,21 @@ ActiveRecord::Schema.define(version: 20161106054018) do
     t.string "service_status",      null: false
   end
 
+<<<<<<< HEAD
   create_table "service_completed", force: :cascade do |t|
     t.integer "service_users_id",    null: false
     t.integer "service_services_id", null: false
     t.string  "completed"
     t.index ["service_services_id"], name: "index_service_completed_on_service_services_id"
     t.index ["service_users_id"], name: "index_service_completed_on_service_users_id"
+=======
+  create_table "service_fixtures", force: :cascade do |t|
+    t.integer "service_user_id",    null: false
+    t.integer "service_service_id", null: false
+    t.string  "completed"
+    t.index ["service_service_id"], name: "index_service_fixtures_on_service_service_id"
+    t.index ["service_user_id"], name: "index_service_fixtures_on_service_user_id"
+>>>>>>> master
   end
 
   create_table "service_privileges", force: :cascade do |t|

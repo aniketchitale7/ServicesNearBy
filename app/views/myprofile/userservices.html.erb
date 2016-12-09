@@ -1,0 +1,32 @@
+<!-- Main -->
+
+  <body>
+  <table>
+    <tr>
+      <th> Request ID </th>
+      <th> Name </th>
+      <th> Service ID </th>
+      <th> Feedback </th>
+
+    </tr>
+  <% @servicefixtures.each do |servicefixture| %>
+        <% @serviceInfo = servicefixture.service_service%>
+        <tr>
+          <td>
+            <%= servicefixture.id  %>
+          </td>
+          <td>
+            <%= @serviceInfo.service_name  %>
+          </td>
+          <td>
+            <%= servicefixture.service_service_id  %>
+          </td>
+          <td>
+            <%= button_to "write", search_create_path(servicefixture.service_service_id)%>
+          </td>
+        </tr>
+  <%end%>
+  </table>
+  </body>
+
+

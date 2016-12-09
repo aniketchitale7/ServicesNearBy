@@ -25,6 +25,7 @@
 </div>
 <div class="container">
 </div>
+<<<<<<< HEAD
 <div id="wrapper">
   <!-- Header -->
   <header id="header">
@@ -48,6 +49,88 @@
           <li><a href="#menu">Menu</a></li>
         </ul>
       </nav>
+=======
+
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+
+        <div class="inner">
+
+
+          <!-- Logo -->
+          <a class="logo">
+            <span class="symbol"><%= image_tag("logo.svg", :alt => "logo") %></span><span class="title">ServicesNearBy</span>
+          </a>
+
+          <!-- Nav -->
+          <nav>
+
+            <ul>
+
+              <% if user_signed_in? %>
+                  <li>
+                    <%= link_to('Logout', destroy_user_session_path, class: 'button fit' ) %>
+                  </li>
+              <% else %>
+                  <li>
+                    <%= link_to 'Login / Sign Up', new_user_registration_path, :method => :delete , class: 'button fit' %>
+                  </li>
+              <% end %>
+
+
+
+              <% if session[:logged_user] != nil and (session[:roleid] == 3 or session[:roleid] == 2)%>
+                <li><a href="#menu">Menu</a></li>
+              <%end%>
+            </ul>
+          </nav>
+
+        </div>
+      </header>
+
+      <!-- Menu -->
+
+        <nav id="menu">
+
+          <h2>Menu</h2>
+          <ul>
+            <li> <%= link_to('Home', welcome_index_path) %></li>
+            <li><a>About Us</a></li>
+            <li><a>Contact Us</a></li>
+            <% if user_signed_in? %>
+            <li><%= link_to "My Profile", myprofile_index_path %></li>
+                <% @serviceuser = session[:logged_user]%>
+                <%end%>
+            <% if @serviceuser != nil and session[:roleid] == 2 %>
+                <li><%= link_to "My Business Pages", businessprofile_index_path %></li>
+                <li><%= link_to "Requests", servicerequestsvendor_path %></li>
+            <% end %>
+            <% if session[:logged_user] != nil and session[:roleid] == 3 %>
+                <li><%= link_to "Request Vendor Profile", requestvendoraccount_path %></li>
+            <% end %>
+            <% if session[:logged_user] != nil and (session[:roleid] == 3 or session[:roleid] == 2)%>
+                <li><%= link_to "View Your Services", userservices_path %></li>
+            <%end%>
+
+          </ul>
+        </nav>
+
+
+
+      <%= yield %>
+
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">SELT</a></li>
+          </ul>
+        </div>
+      </footer>
+
+>>>>>>> master
     </div>
   </header>
   <!-- Menu -->

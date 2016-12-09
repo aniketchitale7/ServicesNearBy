@@ -13,6 +13,7 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
     end
 
     create_table :service_addresses do |t|
+<<<<<<< HEAD
       t.string :address_line1, null: false
       t.string :address_line2
       t.integer :address_zip
@@ -21,6 +22,12 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
       t.string :address_country
       t.decimal :address_lattitute
       t.decimal :address_longitude
+=======
+      t.string 'address', null: false
+      t.string 'landmark'
+      t.decimal 'address_lattitute'
+      t.decimal 'address_longitude'
+>>>>>>> master
     end
 
     create_table :service_users  do |t|
@@ -53,10 +60,17 @@ class ServcesnearmeDatabase < ActiveRecord::Migration[5.0]
       t.string :service_description
     end
 
+<<<<<<< HEAD
     create_table :service_completed do |t|
       t.belongs_to :service_users, null: false
       t.belongs_to :service_services, null: false
       t.string :completed
+=======
+    create_table :service_fixtures do |t|
+      t.belongs_to :service_user, null: false
+      t.belongs_to :service_service, null: false
+      t.string 'completed'
+>>>>>>> master
     end
 
     create_table :service_reviews do |t|
