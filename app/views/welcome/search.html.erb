@@ -1,32 +1,8 @@
- <!-- Main -->
+<!-- Main -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <style>
-   .center {
-     margin-top:50px;
-   }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-   .modal-header {
-     padding-bottom: 5px;
-   }
-
-   .modal-footer {
-     padding: 0;
-   }
-
-   .modal-footer .btn-group button {
-     height:40px;
-     border-top-left-radius : 0;
-     border-top-right-radius : 0;
-     border: none;
-     border-right: 1px solid #ddd;
-   }
-
-   .modal-footer .btn-group:last-child > button {
-     border-right: 0;
-   }
- </style>
 <script>
   $(document).ready(function(){
     $(".categories").click(function(){
@@ -37,6 +13,9 @@
     });
     $(".location").click(function(){
       $("#locationShow").slideToggle("slow");
+    });
+    $(".sort").click(function(){
+      $("#sortShow").slideToggle("slow");
     });
   });
 
@@ -154,6 +133,34 @@
     });
   });
 </script>
+
+
+<style>
+  .center {
+    margin-top:50px;
+  }
+
+  .modal-header {
+    padding-bottom: 5px;
+  }
+
+  .modal-footer {
+    padding: 0;
+  }
+
+  .modal-footer .btn-group button {
+    height:40px;
+    border-top-left-radius : 0;
+    border-top-right-radius : 0;
+    border: none;
+    border-right: 1px solid #ddd;
+  }
+
+  .modal-footer .btn-group:last-child > button {
+    border-right: 0;
+  }
+</style>
+
 <div id="main">
   <div class="inner">
     <div class="container">
@@ -180,12 +187,9 @@
     <header>
       <ul class="topnav" id="myTopnav">
         <li><a class="active">Filters: </a></li>
-        <li ><%= button_to 'Price', welcome_search_path(:filterid => 'Price')%></li>
-        <li><%= button_to 'A-Z', welcome_search_path(:filterid => 'AZ')%></li>
-        <li><a href="#about">Rating</a></li>
+        <li class="sort"><a>Sort</a></li>
         <li class="location"><a>Location</a></li>
         <li class="distance"><a>Distance</a></li>
-        <li class="categories"><a>Categories</a></li>
         <li class="icon">
           <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
         </li>
@@ -194,12 +198,12 @@
     <section>
       <br/>
       <br/>
-      <div class="row uniform" id="categoriesShow" hidden>
+      <div class="row uniform" id="sortShow" hidden>
         <div class="6u 12u$(xsmall)">
-          <%= text_field_tag 'category_box',nil, placeholder: "Enter Category" %>
+          <li ><%= button_to 'Price', welcome_search_path(:filterid => 'Price')%></li>
+          <li><%= button_to 'A-Z', welcome_search_path(:filterid => 'AZ')%></li>
         </div>
         <div class="6u$ 12u$(xsmall)">
-          <%= submit_tag 'Filter'%>
         </div>
       </div>
       <form action="search" method="post">
@@ -217,9 +221,9 @@
         <div class="row uniform" id="distanceShow" hidden>
           <div class="6u 12u$(xsmall)">
             <%= text_field_tag 'autocomplete',nil, placeholder: "Enter City", :onFocus => "geolocate()"%>
-            <input type="text" name="latitude" id="latitude" class="form-control input-lg" placeholder="" />
-            <input type="text" name="longitude" id="longitude" class="form-control input-lg" placeholder="" />
-            <input type="text" name="category" id="category" class="form-control input-lg" value="distance" />
+            <input type="hidden" name="latitude" id="latitude" class="form-control input-lg" placeholder="" />
+            <input type="hidden" name="longitude" id="longitude" class="form-control input-lg" placeholder="" />
+            <input type="hidden" name="category" id="category" class="form-control input-lg" value="distance" />
           </div>
           <div class="6u$ 12u$(xsmall)">
             <%= submit_tag 'Filter', :onClick => "getLatLong()" %>
@@ -238,27 +242,27 @@
     <br/>
     <br/>
     <div class = "default">
-        <% @finalResult.each do |users| %>
-            <p>
+      <% @finalResult.each do |users| %>
+          <p>
         <span class="image left">
           <%= image_tag("restaurant.jpg") %>
         </span>
-              <b><h2><%= users["Service_Name"] %></h2></b>
-              <b>Rating: </b>9.8/10<br/>
-              <b>Address: </b><%= users["address"] %><br/>
-              <b>Phone Number: </b><%= users["Vendor_PhoneNo"] %><br/>
-              <b>Time : </b><%= users["time"] %>
-              <table>
-                <tr>
-                  <td>
-                    <%= button_to "Request",welcomerequestservice_path(users["id"])%>
-                  </td>
-                  <td>
-                    <button data-toggle="modal" data-target="#squarespaceModal-<%= users["id"] %>" style="height: 40px;" >Reviews</button>
+            <b><h2><%= users["Service_Name"] %></h2></b>
+            <b>Rating: </b>9.8/10<br/>
+            <b>Address: </b><%= users["address"] %><br/>
+            <b>Phone Number: </b><%= users["Vendor_PhoneNo"] %><br/>
+            <b>Time : </b><%= users["time"] %>
+          <table>
+            <tr>
+              <td>
+                <%= button_to "Request",welcomerequestservice_path(users["id"])%>
+              </td>
+              <td>
+                <button data-toggle="modal" data-target="#squarespaceModal-<%= users["id"] %>" style="height: 40px;" >Reviews</button>
 
-                  </td>
-                </tr>
-              </table>
+              </td>
+            </tr>
+          </table>
 
 
           <!-- line modal -->
@@ -300,50 +304,37 @@
               </div>
             </div>
           </div>
-              <br/>
+          <br/>
 
 
 
-            </p>
+          </p>
 
-        <%end %>
+      <%end %>
     </div>
 
   </div>
   <br/>
   <br/>
-  <div class="center">
-    <ul class="pagination">
-      <li><a href="#">«</a></li>
-      <li><a href="#">1</a></li>
-      <li><a class="active" href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">6</a></li>
-      <li><a href="#">7</a></li>
-      <li><a href="#">»</a></li>
-    </ul>
-  </div>
+</div>
 
-  <body>
-  <script>
-    // This example displays an address form, using the autocomplete feature
-    // of the Google Places API to help users fill in the information.
+<script>
+  // This example displays an address form, using the autocomplete feature
+  // of the Google Places API to help users fill in the information.
 
-    // This example requires the Places library. Include the libraries=places
-    // parameter when you first load the API. For example:
-    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-    geolocate()
-    var placeSearch, autocomplete;
-    var componentForm = {
-      street_number: 'short_name',
-      route: 'long_name',
-      locality: 'long_name',
-      administrative_area_level_1: 'short_name',
-      country: 'long_name',
-      postal_code: 'short_name'
-    };
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  geolocate()
+  var placeSearch, autocomplete;
+  var componentForm = {
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+  };
   function getLatLong()
   {
     var add = document.getElementById('autocomplete').value;
@@ -364,70 +355,67 @@
 
 
   }
-    function initAutocomplete() {
-      // Create the autocomplete object, restricting the search to geographical
-      // location types.
-      autocomplete = new google.maps.places.Autocomplete(
-          /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-          {types: ['geocode']});
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+        {types: ['geocode']});
 
-      // When the user selects an address from the dropdown, populate the address
-      // fields in the form.
-      autocomplete.addListener('place_changed', fillInAddress);
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+  function fillInAddress() {
+    getLatLong();
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
     }
-
-    function fillInAddress() {
-      getLatLong();
-      // Get the place details from the autocomplete object.
-      var place = autocomplete.getPlace();
-
-      for (var component in componentForm) {
-        document.getElementById(component).value = '';
-        document.getElementById(component).disabled = false;
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
       }
-      // Get each component of the address from the place details
-      // and fill the corresponding field on the form.
-      for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
-        if (componentForm[addressType]) {
-          var val = place.address_components[i][componentForm[addressType]];
-          document.getElementById(addressType).value = val;
-        }
 
-      }
     }
-    // Bias the autocomplete object to the user's geographical location,
-    // as supplied by the browser's 'navigator.geolocation' object.
-    function geolocate() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var geolocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          var circle = new google.maps.Circle({
-            center: geolocation,
-            radius: position.coords.accuracy
-          });
-          autocomplete.setBounds(circle.getBounds());
-          //alert(position.coords.latitude + " : " +position.coords.longitude);
+  }
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
         });
-      }
+        autocomplete.setBounds(circle.getBounds());
+        //alert(position.coords.latitude + " : " +position.coords.longitude);
+      });
     }
-    function distance(lat1, lon1, lat2, lon2) {
-      var radlat1 = Math.PI * lat1/180
-      var radlat2 = Math.PI * lat2/180
-      var theta = lon1-lon2
-      var radtheta = Math.PI * theta/180
-      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      dist = Math.acos(dist)
-      dist = dist * 180/Math.PI
-      dist = dist * 60 * 1.1515
-      return dist
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqtmR7Bep2EGbBVo9PWNVe8nlpntSF-dc&libraries=places&callback=initAutocomplete"
-          async defer></script>
-  </body>
-</div>
-
+  }
+  function distance(lat1, lon1, lat2, lon2) {
+    var radlat1 = Math.PI * lat1/180
+    var radlat2 = Math.PI * lat2/180
+    var theta = lon1-lon2
+    var radtheta = Math.PI * theta/180
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist)
+    dist = dist * 180/Math.PI
+    dist = dist * 60 * 1.1515
+    return dist
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqtmR7Bep2EGbBVo9PWNVe8nlpntSF-dc&libraries=places&callback=initAutocomplete"
+        async defer></script>
