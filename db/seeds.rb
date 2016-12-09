@@ -127,7 +127,7 @@ services_ser = [{:service_name => 'Stella Home Decore', :service_address_id => 1
                 }]
 
 
-
+services_fix = [{:service_user_id => 1, :service_service_id => 1, :completed => "Done"}]
 
 service_role.each do |serviceadd|
   ServiceRole.create!(serviceadd)
@@ -156,4 +156,6 @@ user.each do |user|
   User.create!(user)
 end
 
-
+services_fix.each do |user|
+  ServiceFixture.create!(user)
+end

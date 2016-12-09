@@ -97,5 +97,17 @@ RSpec.describe BusinessprofileController, type: :controller do
 
   end
 
+  describe "Business Profile Index Page" do
+
+    user = User.find(1)
+    before { allow(controller).to receive(:current_user) { user } }
+
+    it "Creating a service" do
+
+      post :create, valid_attributes
+    end
+
+  end
+
 
 end

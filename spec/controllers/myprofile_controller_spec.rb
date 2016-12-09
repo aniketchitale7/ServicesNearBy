@@ -62,16 +62,13 @@ RSpec.describe MyprofileController, type: :controller do
   #end
 
   describe 'add address to the database' do
+    user = User.find(1)
+    before { allow(controller).to receive(:current_user) { user } }
+
     it 'should call add address' do
-      user = Hash.new
-      user["user_firstname"] = "user_firstname"
-      user["user_lastname"] = "user_firstname"
-      user["user_phone"] = "user_firstname"
-      user["user_email"] = "user_firstname"
-      user["service_role_id"] = 3
-      session[:loggeduser] = user
-      post :create, {:address => "address", :landmark => "landmark", :address_lattitute => "address_lattitute", :address_longitude => "address_longitude"}
-      expect(response).to render_template("welcome/index")
+
+      post :create, {:address => "address", :landmark => "landmark", :address_lattitute => "address_lattitute", :address_longitude => "address_longitude", :user_firstname => "user_firstname", :user_lastname => "user_firstname", :user_phone => "user_phone"}
+      expect(response).to redirect_to("/welcome/index")
     end
   end
 
@@ -81,14 +78,12 @@ RSpec.describe MyprofileController, type: :controller do
     end
   end
   describe "My Profile Update Page" do
+
+    user = User.find(1)
+    before { allow(controller).to receive(:current_user) { user } }
+
     it "Creates the My Profile Update Page" do
-      user = Hash.new
-      user["user_firstname"] = "user_firstname"
-      user["user_lastname"] = "user_firstname"
-      user["user_phone"] = 1234567890
-      user["current_user.email"] = "shrivastava.ankur1190@gmail.com"
-      put :update, {:user => user, :address => "address", :landmark => "landmark", :address_lattitute => "address_lattitute", :address_longitude => "address_longitude", :user_firstname => "user_firstname", :user_lastname => "user_firstname", :user_phone => "user_phone"}
-      @user = ServiceUser.find_by_user_email("shrivastava.ankur1190@gmail.com")
+      put :update, {:address => "address", :landmark => "landmark", :address_lattitute => "address_lattitute", :address_longitude => "address_longitude", :user_firstname => "user_firstname", :user_lastname => "user_firstname", :user_phone => "user_phone"}
       expect(response).to redirect_to("/welcome/index")
     end
 
@@ -117,5 +112,51 @@ RSpec.describe MyprofileController, type: :controller do
       post :edit, {:id => 1}
     end
   end
+
+  describe 'Create vendor account' do
+    it 'Create vendor account' do
+      service_user = ServiceUser.find_by_user_email("user.active@gmail.com")
+      session[:logged_user] = service_user
+      get :createVendorAccount
+      expect(response).to redirect_to("/welcome/index")
+    end
+  end
+
+
+  describe 'Get user services' do
+    it 'Get user services' do
+      service_user = ServiceUser.find_by_user_email("user.active@gmail.com")
+      session[:logged_user] = service_user
+      get :userservices
+    end
+  end
+
+  describe 'servicerequests' do
+    it 'servicerequests' do
+      service_user = ServiceUser.find_by_user_email("user.active@gmail.com")
+      session[:logged_user] = service_user
+      get :servicerequests
+    end
+  end
+
+  describe 'requestvendoraccount' do
+    it 'requestvendoraccount' do
+      service_user = ServiceUser.find_by_user_email("user.active@gmail.com")
+      session[:logged_user] = service_user
+      get :requestvendoraccount
+    end
+  end
+
+  describe 'index' do
+
+    user = User.find(1)
+    before { allow(controller).to receive(:current_user) { user } }
+
+    it 'index' do
+      get :index
+    end
+  end
+
+
 
 end
