@@ -220,7 +220,7 @@
       <form action="search" method="post">
         <div class="row uniform" id="distanceShow" hidden>
           <div class="6u 12u$(xsmall)">
-            <%= text_field_tag 'autocomplete',nil, placeholder: "Enter City", :onFocus => "geolocate()"%>
+            <%= text_field_tag 'autocomplete',nil, placeholder: "Near by Address", :onFocus => "geolocate()"%>
             <input type="hidden" name="latitude" id="latitude" class="form-control input-lg" placeholder="" />
             <input type="hidden" name="longitude" id="longitude" class="form-control input-lg" placeholder="" />
             <input type="hidden" name="category" id="category" class="form-control input-lg" value="distance" />
