@@ -28,7 +28,42 @@ Feature: Allow ServicesNearBy  to perform Admin activities
     When I have deactivating vendor in with email "vendor.active@gmail.com"
     Then I should see de-activated successfull.
 
+  Scenario:  Deactivating a service (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
 
+  Scenario:  Activating a service (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+  Scenario:  Deactivating a category (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+  Scenario:  Activating a category (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+
+  Scenario:  Accepting a service (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+  Scenario:  Rejecting a service (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+  Scenario:  Accepting a vendor request (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+  Scenario:  Rejecting a category (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
+
+  Scenario:  Adding a category (Declarative)]
+    When I have deactivating vendor in with email "vendor.active@gmail.com"
+    Then I should see de-activated successfull.
 
 #    successsignup
 #    missing Emailid
