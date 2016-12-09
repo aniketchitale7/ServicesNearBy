@@ -88,7 +88,7 @@ class WelcomeController < ApplicationController
 
     puts @id
     if @service_user == nil
-      flash.now[:alert] = 'Please Sign in'
+      redirect_to user_session_path
     else
       @hashValue= Hash.new
       @hashValue["service_user_id"] = @service_user["id"]
