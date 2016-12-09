@@ -21,8 +21,8 @@ class WelcomeController < ApplicationController
     $flagPrice = !$flagPrice
     $flagAZ = !$flagAZ
 
-    @result = ServiceService.where("service_description LIKE ? OR keywords LIKE ?", "%#{@searchterm}%", "%#{@searchterm}%")
-    if(@filterid == 'Price' and $flagPrice == true)
+    @result = ServiceService.where("service_description LIKE ? OR keywords LIKE ? OR service_name LIKE ?", "%#{@searchterm}%", "%#{@searchterm}%" , "%#{@searchterm}%")
+     if(@filterid == 'Price' and $flagPrice == true)
       @result = @result.order("service_price DESC")
     elsif(@filterid == 'Price' and $flagPrice == false)
       @result = @result.order("service_price ASC")
