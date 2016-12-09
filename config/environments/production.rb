@@ -87,14 +87,14 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host:'morning-beach-21493.herokuapp.com' }
+  config.action_mailer.default_url_options = { host:'arcane-waters-20421.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   #config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
       :port => 587,
-      :domain => 'morning-beach-21493.herokuapp.com',
+      :domain => 'arcane-waters-20421.herokuapp.com',
       :user_name => "servicesnearby@gmail.com",
       :password => "oakcrest1100",
       :authentication => :plain,
